@@ -3,6 +3,7 @@ import {ChangeDetectorRef, OnDestroy, OnInit} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout'
 import { DataService } from '../data.service'
 import { ImagenService } from './imagen.service';
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -23,23 +24,28 @@ export class PanelPrincipalAdminComponent {
     {name:"Home", route:"", icon:"home"},
     {name:"Acuerdos", route:"Acuerdos", icon:"assignment"},
     {name:"Notificaciones", route:"Notificaciones", icon:"priority_high"},
-    {name:"Propiedades", route:"Propiedades", icon:"explore", children: [
+    {name:"Propiedades", route:"Propiedades", icon:"explore", 
+    children: [
       {name:"Agregar", route:"Propiedades", icon:"assignment_ind", children: []},
       {name:"Consultar", route:"ConsultarPropiedades", icon:"class"}
     ]},
     {name:"Controlador",route:"Fraccionamientos", icon:"cast_connected"},
-    {name:'Usuarios',route:"Usuarios", icon:"supervised_user_circle", children: [
-      {name:"Agregar", route:"ConsultarUsuario", icon:"person_add", children: []},
+    {name:'Usuarios',route:"Usuarios", icon:"supervised_user_circle", 
+    children: [
+      {name:"Agregar", route:"ConsultarUsuario", icon:"person_add", 
+      children: []},
       {name:"Consultar", route:"AgregarUsuario", icon:"class"}
     ]},
-  //  {name:'Salir',route:'Home', icon:"exit_to_app"}
+    {name:"Configuracion",route:"Settings",icon:"settings"}
+   //{name:'Salir',route:'Home', icon:"exit_to_app"}
 
    // <font-awesome-icon icon="right-from-bracket" />
   ]
 
 
   exit() {
-    location.reload();
+    //location.reload();
+    this.router.navigate(['../']);
   }
 
   fillerContent = Array.from(
@@ -58,7 +64,7 @@ usuario: any;
 
     
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private data: DataService, private imagenService: ImagenService) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private data: DataService, private imagenService: ImagenService,private router:Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

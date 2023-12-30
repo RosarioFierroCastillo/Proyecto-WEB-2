@@ -45,13 +45,7 @@ const routes: Routes = [
   {path:'Agregar_Usuario', component:AgregarUsuarioComponent},
   {path:'Registros', component:RegistrosComponent},
 
-  {path:'DeudasOrdinarias', component:DeudasOrdinariasComponent},
-  {path:'DeudasExtraordinarias', component:DeudasExtraordinariasComponent},
-  {path:'Deudores', component:DeudoresComponent},
-  {path:'Egresos', component:EgresosComponent},
-  {path:'IngresosExtraordinarios', component:IngresosExtraordinariosComponent},
-  {path:'IngresosOrdinarios', component:IngresosOrdinariosComponent},
-  {path:'Proveedores', component:ProveedoresComponent},
+  
 
   {path:'Notificaciones_usuarios', component:NotificacionesUsuariosComponent},
   {path:'MisDeudas', component:MisDeudasComponent},
@@ -60,8 +54,7 @@ const routes: Routes = [
   {path:'Acuerdos_usuarios', component:AcuerdosUsuariosComponent},
   {path:'Administracion', component:AdministracionComponent},
 
-  {path:'PanelAdmin', component:PanelPrincipalAdminComponent},
-  {path:'PanelTesorero', component:PanelPrincipalTesoreroComponent},
+  
   {path:'PanelUser', component:PanelPrincipalUserComponent},
   {path:'NotFound', component:NotFoundComponent},
   {path:'AgregarUsuario', component:AgregarUsuarioComponent},
@@ -73,24 +66,37 @@ const routes: Routes = [
   {path:'Invitacion', component:InvitacionComponent},
 
 
- // {path:'', component:AppComponent},
-
+ 
+  //Inicio panel admin
   {path:'PanelAdmin', component:PanelPrincipalAdminComponent, 
   children: [
     {path:'Acuerdos', component:AcuerdosComponent},
     {path:'Notificaciones', component:NotificacionesComponent},
-    {path:'Propiedades', component:PropiedadesComponent, children: [
+    {path:'Propiedades', component:PropiedadesComponent, 
+    children: [
       {path:'Propiedades', component:PropiedadesComponent},
       {path:'ConsultarPropiedades', component:ConsultarPropiedadesComponent}
     ]},
     {path:'Fraccionamientos',component:FraccionamientosComponent},
-    {path:'Usuarios', component:UsuariosComponent, children: [
+    {path:'Usuarios', component:UsuariosComponent, 
+    children: [
       {path:'ConsultarUsuario', component:EmailComponent},
       {path:'AgregarUsuario', component:AgregarUsuarioComponent}
     ]},
-   // { path: '', redirectTo: 'AppComponent', pathMatch: 'full' } // Ruta por defecto
-   {path:'Home', component:HomeComponent}
-  ]},
+    {path:"Settings", component:CuentaComponent}
+  ]},//Final panel admin
+
+  //inicio panel tesorero
+  {path:'PanelTesorero', component:PanelPrincipalTesoreroComponent,
+  children:[
+    {path:'DeudasOrdinarias', component:DeudasOrdinariasComponent},
+  {path:'DeudasExtraordinarias', component:DeudasExtraordinariasComponent},
+  {path:'Deudores', component:DeudoresComponent},
+  {path:'Egresos', component:EgresosComponent},
+  {path:'IngresosExtraordinarios', component:IngresosExtraordinariosComponent},
+  {path:'IngresosOrdinarios', component:IngresosOrdinariosComponent},
+  {path:'Proveedores', component:ProveedoresComponent},
+  ]},//Final panel tesorero
 
   {path:'', component:InicioSesionComponent}
 ];

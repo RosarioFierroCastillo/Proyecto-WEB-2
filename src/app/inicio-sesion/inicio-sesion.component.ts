@@ -120,6 +120,14 @@ export class InicioSesionComponent {
       //define el tipo de usuario
    this.Tipo_usuario = sesions[0].tipo_usuario;
 
+   if(this.Tipo_usuario=="administrador"){
+    this.router.navigate(['PanelAdmin']);
+   }else if(this.Tipo_usuario=="tesorero"){
+    this.router.navigate(['PanelTesorero']);
+   }else{
+    this.router.navigate(['PanelUser']);
+   }
+
    localStorage.setItem("data", JSON.stringify(sesions[0]));
 
    
