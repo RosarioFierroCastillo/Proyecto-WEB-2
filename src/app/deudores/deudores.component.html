@@ -1,0 +1,52 @@
+<body>
+    <div class="contenedor1">
+        <h2 class="titulo">Deudores</h2>
+        <form>
+            <input type="text" class="form-control" name="filtrar" placeholder="buscar" [(ngModel)]="filtroDeudores">
+        </form>
+        <div class="contenedor">
+
+            <div class="form">
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Concepto</th>
+                            <th>Persona</th>
+                            <th>Monto</th>
+                            <th>Próximo pago</th>
+                            <th style="text-align:center;width:200px;">
+                                Restringir el acceso
+                            </th>
+                            <th style="text-align:center;width:200px;">
+                                Borrar
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        <tr mat-row matRowDef="columns: displayedcolumns;"
+                            *ngFor="let deudor of deudores | filtroDeudores: 'concepto': filtroDeudores">
+                            <th scope="row">{{deudor.id_deuda}}</th>
+                            <td>{{deudor.concepto}}</td>
+                            <td>{{deudor.persona}}</td>
+                            <td>{{deudor.monto}}</td>
+                            <td class="fecha">{{deudor.proximo_pago}}</td>
+                            <td>
+                                <a class="btn btn-sm text-white btn-danger" style="margin: auto;"
+                                    (click)="restringir_acceso(deudor.id_deuda)">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-sm text-white btn-danger" style="margin: auto;">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>

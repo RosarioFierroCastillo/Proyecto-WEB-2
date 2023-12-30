@@ -1,0 +1,261 @@
+
+
+.contenedor {
+  width: 30%;
+  margin: auto;
+  height: 70%;
+  padding: 20px;
+
+  margin-top: 20px;
+  position:absolute; top:23px; left:20px;
+  margin-left: 5%;
+
+}
+
+
+.titulo {
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+ 
+}
+
+.Formulario{
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.boton-verde, .boton-amarillo, .boton-rojo, .boton-azul{
+  padding: 10px;
+  margin: 10px 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  
+ 
+}
+
+/*
+label {
+  margin-top: 10px;
+}
+
+input {
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.boton-verde, .boton-amarillo, .boton-rojo, .boton-azul{
+  padding: 10px;
+  margin: 10px 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+*/
+.boton-verde {
+  background-color: #4CAF50; /* Verde */
+
+  
+  color: white;
+}
+
+.boton-azul {
+  background-color: blue; /* Azul */
+  color: white;
+}
+
+
+table, th ,td, thead, tr {
+  text-align: center;
+  width: 300px; 
+
+}
+
+table{
+  position:absolute; top:23px; left:550px;
+  width: 610px;
+}
+
+.botones-container{
+  margin: auto;
+}
+
+input, select{
+  border:none;
+  border-bottom:1px solid #757575;
+}
+
+#controlador{
+  margin-top: 20px;
+  position:absolute; top:40px; left:550px;
+  width: 610px;
+  border: #757575;
+} 
+
+#controlador > form > input,  #controlador > form > label{
+  width: 50%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+
+
+#informacion{
+  margin-top: 20px;
+  position:absolute; top:40px; left:550px;
+  background-color: white; 
+}
+
+#informacion > form > input,  #informacion > form > label{
+  width: 50%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+/*
+#informacion {
+  display: none;
+}
+*/
+
+/*tabla principal*/
+#example{
+  margin: auto;
+  margin-top: 250px;
+  width: 610px;
+} 
+/*tabla flotante*/
+#table1{
+  position:absolute; top:190px;
+  width: 400px;
+  left:550px;
+}
+
+.nombre{
+  width: 500px;
+}
+
+.borrar{
+  width: 50px;
+}
+
+.id{
+  width: 20px;
+}
+
+.Formulario1{
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.flotante{ 
+  width: 200px;
+  
+}
+
+.labelf{
+  margin-right: auto;
+}
+
+.Formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+select, #fechaNacimiento{
+  width: 180px;
+  height: 26px;
+}
+
+
+#telefono{
+  width: 210px;
+  height: 26px;
+}
+
+#lote1{
+  display: inline-block;
+
+
+}
+
+a {
+  flex-direction: column;
+}
+  
+/*VENTANA FLOTANTE*/
+
+
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    
+  }
+  
+  .login-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 800px;
+    height: 400px;
+    background-color: #ccc;
+  }
+  
+  .login-box h2 {
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
+  }
+
+  h2{
+    color: black;
+  }
+  
+  .input-group input {
+    width: calc(100% - 12px);
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .botones-container{
+    margin: auto;
+  }
+

@@ -1,0 +1,100 @@
+body{
+  background-color: #b2c9a9; 
+}
+.contenedor {
+    height:330px;
+    width:100%;
+    position:absolute; 
+    overflow:scroll;
+    top: 132px;
+  }
+
+  #id{
+    width: 263px;
+  }
+  form{
+    margin-left:5px;
+    margin-bottom: 30px;
+  }
+
+  #example1{
+    margin-left:20px;
+  }
+
+  .contenedor1 {
+    width: 57%;
+   
+    height: 90%;
+    padding: 20px; 
+    margin-top: 20px;
+    position:absolute; top:20px; left:0px;
+    margin-left: 1%;
+    margin-bottom: 400px;
+
+  }
+  
+  input{
+    width: 30%;
+  }
+  .fecha{
+    width: 300px; 
+  }
+
+.botones-container{
+    margin: auto;
+}
+
+  .titulo {
+    text-align: center;
+    color: rgb(0, 0, 0);
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+
+  }
+  
+  .Formulario{
+    display: flex;
+    flex-direction: column;
+   
+  }
+  
+  .boton-verde, .boton-amarillo, .boton-rojo, .boton-azul{
+    padding: 10px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  
+    
+   
+  }
+  
+  .boton-verde {
+    background-color: #4CAF50; /* Verde */
+  
+    
+    color: white;
+  }
+  
+  .boton-azul {
+    background-color: blue; /* Azul */
+    color: white;
+  }
+  
+  
+  table, th ,td, thead, tr {
+    text-align: center;
+    width: 300px; 
+  
+  }
+  
+  table{
+    position:absolute;  left:5px;
+    width: 700px;
+    display: block;
+  }
+  
+  

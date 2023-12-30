@@ -1,0 +1,36 @@
+<body>
+    <div class="contenedor1">
+        <h2 class="titulo">Consultar usuarios</h2>
+        <form>
+            <input type="text" class="form-control" name="filtrar" placeholder="buscar" [(ngModel)]="filtroUsuarios">
+        </form>
+        <div class="contenedor">
+
+            <div class="form">
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr> 
+                            <th id="id">#</th>
+                            <th>Nombre</th>
+                            <th>Apellido paterno</th>
+                            <th>Apellido materno</th>
+                            <th>Tipo de usuario</th>
+                            <th>Correo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr mat-row matRowDef="columns: displayedcolumns;"
+                            *ngFor="let usuario of usuarios | filtroUsuarios: 'nombre': filtroUsuarios">
+                            <th scope="row">{{usuario.id_persona}}</th>
+                            <td>{{usuario.nombre}}</td>
+                            <td>{{usuario.apellido_pat}}</td>
+                            <td>{{usuario.apellido_mat}}</td>
+                            <td>{{usuario.tipo_usuario}}</td>
+                            <td>{{usuario.correo}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>

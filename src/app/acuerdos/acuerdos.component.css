@@ -1,0 +1,118 @@
+body{
+  background-color: #ccdfc3; 
+}
+
+.contenedor2 {
+  height:450px;
+  width:50%;
+  position:absolute; 
+  overflow:scroll;
+  left: 600px;
+  top:70px;
+}
+  
+#buscar{
+  position:absolute; top:33px; left: 600px;
+  background-color: #ccdfc3; 
+}
+
+#buscar1{
+  position:absolute; bottom: 1px; left: 250px;
+  background-color: #ccdfc3; 
+}
+
+.contenedor { 
+    width: 30%;
+    margin: auto;
+    height: 70%;
+    padding: 20px;
+    margin-top: 20px;
+    position:absolute; top:23px; left:20px;
+    margin-left: 5%;
+  }
+  
+  input{
+    border:none;
+    border-bottom:1px solid #757575;
+    background-color: #ccdfc3; 
+  }
+  
+  .titulo {
+    text-align: center;
+    color: rgb(0, 0, 0);
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+   
+  }
+  
+  .Formulario{
+    display: flex;
+    flex-direction: column;
+   
+  }
+  
+  .boton-verde, .boton-amarillo, .boton-rojo, .boton-azul{
+    padding: 10px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  
+    
+   
+  }
+
+  textarea{
+    background-color: #c9dac3; 
+  }
+
+  ::-webkit-scrollbar{
+    background-color: #ccdfc3;  
+  }
+  
+  /*
+  label {
+    margin-top: 10px;
+  }
+  
+  input {
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .boton-verde, .boton-amarillo, .boton-rojo, .boton-azul{
+    padding: 10px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  */
+  .boton-verde {
+    background-color: #4CAF50; /* Verde */
+  
+    
+    color: white;
+  }
+  
+  .boton-azul {
+    background-color: blue; /* Azul */
+    color: white;
+  }
+  
+  
+  table, th ,td, thead, tr {
+    text-align: center;
+    width: 300px; 
+    background-color: #b7caaf; 
+  
+  }
+  
+  table{
+    position:absolute; top:10px;
+    width: 610px;
+  }
+  

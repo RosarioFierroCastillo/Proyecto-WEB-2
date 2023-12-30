@@ -1,0 +1,67 @@
+
+<body>
+    <div class="container">
+        
+
+        <!-- Formulario para agregar un nuevo ingreso ordinario -->
+        <form id="formIngresosOrdinarios" class="Formulario">
+            <h2 class="titulo">Ingresos Ordinarios</h2>
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <select id="usuario" name="usuario">
+                    <option value="usuario1">Usuario 1</option>
+                    <option value="usuario2">Usuario 2</option>
+                    <!-- Agrega más opciones según sea necesario -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="deuda">Deuda:</label>
+                <select id="deuda" name="deuda">
+                    <option value="deuda1">Deuda 1</option>
+                    <option value="deuda2">Deuda 2</option>
+                    
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="montoDeuda">Monto de Deuda:</label>
+                <input type="text" id="montoDeuda" name="montoDeuda" value="ValorMontoDeuda" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="cantidadPagar">Cantidad a Pagar:</label>
+                <input type="number" id="cantidadPagar" name="cantidadPagar" required>
+            </div>
+
+            <div class="form-group">
+                <label for="comprobante">Comprobante:</label>
+                <select id="comprobante" name="comprobante">
+                    <option value="efectivo">Pago en Efectivo</option>
+                    <option value="spei">Comprobante SPEI</option>
+                    <option value="ticket">Ticket Bancario</option>
+                    <!-- Agrega más opciones según sea necesario -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fechaCorte">Fecha de Corte:</label>
+                <input type="date" id="fechaCorte" name="fechaCorte" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="periodicidad">Periodicidad:</label>
+                <input type="date" id="periodicidad" name="periodicidad" disabled>
+            </div>
+
+            <div class="button-group">
+                <button class="green-button">Liquidar/Abonar</button>
+                <button class="yellow-button">Consultar Ingreso Ordinario</button>
+                <button class="red-button">Eliminar Ingreso Ordinario</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+
+

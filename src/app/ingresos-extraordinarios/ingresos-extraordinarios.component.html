@@ -1,0 +1,59 @@
+<body>
+  <div class="contenedor">
+
+    <div class="form">
+      <!-- Formulario para agregar un nuevo ingreso extraordinario -->
+      <form id="formCrear" class="Formulario">
+
+        <h2 class="titulo">Ingresos Extraordinarios</h2>
+
+
+        <label for="usuario">Usuario:</label>
+        <select id="usuario" name="usuario">
+          <option value="usuario1">Usuario 1</option>
+          <option value="usuario2">Usuario 2</option>
+          <!-- Agrega más opciones según sea necesario -->
+        </select>
+
+
+
+        <label for="deuda">Deuda:</label>
+        <select id="deuda" name="deuda">
+          <option value="deuda1">Deuda 1</option>
+          <option value="deuda2">Deuda 2</option>
+
+        </select>
+
+
+
+        <label for="montoDeuda">Monto de Deuda:</label>
+        <input type="text" id="montoDeuda" name="montoDeuda" value="ValorMontoDeuda" disabled>
+
+
+
+        <label for="cantidadPagar">Cantidad a Pagar:</label>
+        <input type="number" id="cantidadPagar" name="cantidadPagar" required>
+
+
+
+        <label for="comprobante">Comprobante:</label>
+        <select id="comprobante" name="comprobante">
+          <option value="efectivo">Pago en Efectivo</option>
+          <option value="spei">Comprobante SPEI</option>
+          <option value="ticket">Ticket Bancario</option>
+
+        </select>
+
+
+
+        <label for="fechaCorte">Fecha de Corte:</label>
+        <input type="text" id="fechaCorte" name="fechaCorte" value="ValorFechaCorte" disabled>
+
+
+        <div class="botones-container">
+        <button class="boton-verde" onclick="liquidarAbonar()">Liquidar/Abonar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</body>

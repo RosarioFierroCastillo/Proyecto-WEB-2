@@ -1,0 +1,53 @@
+<body>  
+    <div class="contenedor">
+        <div class="form">
+            <h2 class="titulo">Acuerdos</h2>
+
+            <form #acuerdoForm="ngForm" class="Formulario" (ngSubmit)="agregarAcuerdo(acuerdoForm.value)">
+
+                <label for="asunto">Asunto del Acuerdo:</label>
+                <input type="text" id="asunto" name="asunto" ngModel required>
+
+                <label for="detalles">Detalles del Acuerdo:</label>
+                <textarea id="detalles" name="detalles" rows="4" ngModel required></textarea>
+
+                <div class="botones-container">
+                    <button class="boton-verde" type="submit">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  
+    <div class="contenedor1">
+    <form id="buscar">
+        <input type="text" name="filtrar" placeholder="buscar" [(ngModel)]="filtroAcuerdos">
+        <input type="date" name="filtrarFecha" [(ngModel)]="filtroFecha" id="buscar1">
+    </form>
+
+    <div class="contenedor2">
+    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Asunto</th>
+                <th>Detalles</th>
+                <th>Fecha</th> 
+                <th>Borrar acuerdo</th>
+            </tr>
+        </thead> 
+        <tbody>
+            <tr *ngFor="let acuerdo of acuerdos | filtroAcuerdos: 'asunto': filtroAcuerdos | filtroFecha: 'fecha': filtroFecha">
+                <td>{{ acuerdo.asunto }}</td>
+                <td>{{ acuerdo.detalles }}</td>
+                <td>{{ acuerdo.fecha }}</td>
+                <td>
+                    <a class="btn btn-sm text-white btn-danger" style="margin-left:16px;"
+                        (click)="eliminarAcuerdo(acuerdo.id_acuerdo,acuerdo.id_fraccionamiento)">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+</body>

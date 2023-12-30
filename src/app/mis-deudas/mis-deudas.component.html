@@ -1,0 +1,50 @@
+
+<body>
+    <div class="container">
+        <h2 class="titulo">Mis Deudas</h2>
+
+        <!-- Combobox para ordenar por -->
+        <div class="ordenar-por">
+            <label for="ordenarPor">Ordenar por:</label>
+            <select id="ordenarPor" name="ordenarPor">
+                <option value="tipoDeuda">Tipo de Deuda</option>
+                <option value="monto">Monto</option>
+            </select>
+        </div>
+
+        <!-- Tabla de deudas -->
+        <table class="tabla">
+            <thead>
+                <tr>
+                    <th>Tipo de Deuda</th>
+                    <th>Concepto</th>
+                    <th>Descripción</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Filas de la tabla -->
+                <tr>
+                    <td>Mantenimiento</td>
+                    <td>Cuota Mensual</td>
+                    <td>Cuota de mantenimiento del fraccionamiento</td>
+                    <td>$150.00</td>
+                </tr>
+                <tr>
+                    <td>Renta</td>
+                    <td>Renta de Áreas Comunes</td>
+                    <td>Renta de salón de eventos para eventos privados</td>
+                    <td>$50.00</td>
+                </tr>
+                <tr>
+                    <td>Alumbrado</td>
+                    <td>Cuota Trimestral</td>
+                    <td>Cuota para el mantenimiento del alumbrado público</td>
+                    <td>$80.00</td>
+                </tr>
+                <!-- Agrega más filas según sea necesario -->
+            </tbody>
+        </table>
+    </div>
+</body>
+
