@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ChangeDetectorRef, OnDestroy, OnInit} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import { DataService } from '../data.service';
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -30,7 +31,8 @@ export class PanelPrincipalUserComponent {
 
 
 exit() {
-  location.reload();
+  //location.reload();
+  this.router.navigate(['../']);
 }
 
   fillerContent = Array.from(
@@ -47,7 +49,7 @@ exit() {
 Nav: any;
     
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private dataService: DataService) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private dataService: DataService,private router:Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

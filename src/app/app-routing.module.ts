@@ -46,16 +46,6 @@ const routes: Routes = [
   {path:'Registros', component:RegistrosComponent},
 
   
-
-  {path:'Notificaciones_usuarios', component:NotificacionesUsuariosComponent},
-  {path:'MisDeudas', component:MisDeudasComponent},
-  {path:'Proveedores_usuarios', component:ProveedoresUsuariosComponent},
-  {path:'AccesoPuerta', component:AccesoPuertaComponent},
-  {path:'Acuerdos_usuarios', component:AcuerdosUsuariosComponent},
-  {path:'Administracion', component:AdministracionComponent},
-
-  
-  {path:'PanelUser', component:PanelPrincipalUserComponent},
   {path:'NotFound', component:NotFoundComponent},
   {path:'AgregarUsuario', component:AgregarUsuarioComponent},
   {path:'Home', component:HomeComponent},
@@ -65,8 +55,6 @@ const routes: Routes = [
   
   {path:'Invitacion', component:InvitacionComponent},
 
-
- 
   //Inicio panel admin
   {path:'PanelAdmin', component:PanelPrincipalAdminComponent, 
   children: [
@@ -97,6 +85,18 @@ const routes: Routes = [
   {path:'IngresosOrdinarios', component:IngresosOrdinariosComponent},
   {path:'Proveedores', component:ProveedoresComponent},
   ]},//Final panel tesorero
+
+  //Inicio panel de usuario
+  {path:'PanelUser', component:PanelPrincipalUserComponent,
+  children:[
+    {path:'Notificaciones_usuarios', component:NotificacionesUsuariosComponent},
+    {path:'MisDeudas', component:MisDeudasComponent},
+    {path:'Proveedores_usuarios', component:ProveedoresUsuariosComponent},
+    {path:'AccesoPuerta', component:AccesoPuertaComponent},
+    {path:'Acuerdos_usuarios', component:AcuerdosUsuariosComponent},
+    {path:'Administracion', component:AdministracionComponent},
+
+  ]},//Final panel de usuario
 
   {path:'', component:InicioSesionComponent}
 ];

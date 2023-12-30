@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ChangeDetectorRef, OnDestroy, OnInit} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout'
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-panel-principal-tesorero',
@@ -27,7 +28,8 @@ export class PanelPrincipalTesoreroComponent {
   ]
 
   exit() {
-    location.reload();
+    //location.reload();
+    this.router.navigate(['../']);
   }
 
   fillerContent = Array.from(
@@ -44,7 +46,7 @@ export class PanelPrincipalTesoreroComponent {
 Nav: any;
     
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private router:Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
