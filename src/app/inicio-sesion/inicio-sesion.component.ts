@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 import { HomeComponent } from '../home/home.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import  emailjs  from '@emailjs/browser';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -110,48 +111,86 @@ export class InicioSesionComponent {
   }
 
 
-  iniciar_sesion(sesion: {username: string, password: string}){
-    
+  iniciar_sesion(sesion: { username: string, password: string }) {
+
+    if (!sesion.username || !sesion.password) {
+      Swal.fire({
+        title: 'Por favor no dejes ningun campo vacio',
+        text: '',
+        icon: 'warning',
+        confirmButtonText: 'Aceptar'
+      })
+      return; 
+    }
+
     this.data.iniciar_sesion1(sesion).subscribe((sesions) => {
-
-   console.log(sesions[0].tipo_usuario);
-   console.log(sesions[0]);
-
-      //define el tipo de usuario
-   this.Tipo_usuario = sesions[0].tipo_usuario;
-
-   if(this.Tipo_usuario=="administrador"){
-    this.router.navigate(['PanelAdmin']);
-   }else if(this.Tipo_usuario=="tesorero"){
-    this.router.navigate(['PanelTesorero']);
-   }else{
-    this.router.navigate(['PanelUser']);
-   }
-
-   localStorage.setItem("data", JSON.stringify(sesions[0]));
-
-   
-
-    //localStorage.setItem("data", JSON.stringify(data));
-
-  });
-
-}
-
+      if (sesions.length > 0) {
+        console.log(sesions[0].tipo_usuario);
+        console.log(sesions[0]);
+  
+        // Define el tipo de usuario
+        this.Tipo_usuario = sesions[0].tipo_usuario;
+  
+        if (this.Tipo_usuario === "administrador") {
+          this.router.navigate(['PanelAdmin']);
+        } else if (this.Tipo_usuario === "tesorero") {
+          this.router.navigate(['PanelTesorero']);
+        } else if (this.Tipo_usuario === "usuario") {
+          this.router.navigate(['PanelUser']);
+        } else {
+          console.log("Tipo de usuario desconocido");
+        }
+  
+        localStorage.setItem("data", JSON.stringify(sesions[0]));
+      } else {
+        Swal.fire({
+          title: 'Error en inicio de sesion',
+          text: 'Correo o contraseña incorrectos',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    });
+  }
+  
 agregar_administrador(sesion: {username: string, correo: string, password: string, ppassword: string}){
-    
+  
+  if(!sesion.username || !sesion.correo || !sesion.password || !sesion.ppassword){
+    Swal.fire({
+      title: 'Por favor no dejes ningun campo vacio',
+      text: '',
+      icon: 'warning',
+      confirmButtonText: 'Aceptar'
+    })
+    return; 
+  }
+
   if(sesion.password == sesion.ppassword){
 
     let direccion = "https://localhost:44397/api/Personas/Agregar_Administrador?nombre="+sesion.username+"&correo="+sesion.correo+"&contrasenia="+sesion.password;
 
     const headers = new HttpHeaders({'myHeader': 'procademy'});
-    this.http.post(
-      direccion,
-       sesion, {headers: headers})
-       .subscribe((res) => {
-         console.log(res);
-       
-       });
+    this.http.post(direccion, sesion, { headers: headers }).subscribe(
+      (res) => {
+      //console.log('Respuesta:', res);
+      Swal.fire({
+        title: 'Administrador agregado correctamente',
+        text: '',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      })
+      },
+      (error) => {
+        Swal.fire({
+          title: 'Error',
+          text: error,
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        })
+    
+  }
+);
+
   }
   else{ 
     console.log("error: intentalo de nuevo");

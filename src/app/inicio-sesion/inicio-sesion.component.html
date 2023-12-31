@@ -23,24 +23,8 @@
 
 
 	<body>
-<!--
-		<ng-container *ngIf="Tipo_usuario==''">
-			<button (click)="Definir_Admin()" [routerLink]="['../']">Admin</button>
-			<button (click)="Definir_User()" [routerLink]="['../']">User</button>
-			<button (click)="Definir_Tesorero()" [routerLink]="['../']">Tesorero</button></ng-container>
-		-->		
-		<ng-container *ngIf="Tipo_usuario=='administrador'">
-			<app-panel-principal-admin></app-panel-principal-admin>
-		</ng-container>
 
-		<ng-container *ngIf="Tipo_usuario=='usuario'">
-			<app-panel-principal-user></app-panel-principal-user>
-		</ng-container>
-
-		<ng-container *ngIf="Tipo_usuario=='tesorero'">
-			<app-panel-principal-tesorero></app-panel-principal-tesorero>
-		</ng-container>
-	
+		
 
 		<!------ Include the above in your HEAD tag ---------->
 
@@ -79,7 +63,7 @@
 										<div class="form-group">
 											<div class="row">
 												<div class="col-sm-6 col-sm-offset-3">
-													<input type="submit" (click)="iniciar_sesion(form.value)" [routerLink]="['PanelAdmin']" name="login-submit" id="login-submit"
+													<input type="submit" (click)="iniciar_sesion(form.value)"  name="login-submit" id="login-submit"
 														tabindex="4" class="form-control btn btn-login"
 														value="Iniciar sesión">
 												</div>

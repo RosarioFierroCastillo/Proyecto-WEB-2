@@ -61,4 +61,14 @@ Nav: any;
   ngOnInit(): void {
     
   }
+
+  //Configuracion del submenu para que no se abra dos veces
+  submenuAbierto: number = -1;
+  abrirSubmenu(index: number): void {
+    if (this.submenuAbierto === index) {
+      this.submenuAbierto = -1; // Si se hace clic en el mismo, ciérralo
+    } else {
+      this.submenuAbierto = index; // Abre el nuevo submenu
+    }
+  }
 }
