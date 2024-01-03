@@ -33,6 +33,7 @@ import {CuentaComponent} from './cuenta/cuenta.component'
 
 import { InvitacionComponent } from './invitacion/invitacion.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
+import { RecuperacionContraseniaComponent } from './recuperacion-contrasenia/recuperacion-contrasenia.component';
 
 
 const routes: Routes = [
@@ -54,6 +55,7 @@ const routes: Routes = [
   {path:'Settings', component:CuentaComponent},
   
   {path:'Invitacion', component:InvitacionComponent},
+  {path:'Recuperacion', component:RecuperacionContraseniaComponent},
 
   //Inicio panel admin
   {path:'PanelAdmin', component:PanelPrincipalAdminComponent, 

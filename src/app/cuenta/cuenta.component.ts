@@ -158,33 +158,20 @@ export class CuentaComponent {
           console.error('Error al cargar el archivo', error);
         });
     }
-  }
+    }
+  
   
 
 
-// Cargar_Imagen(){
-//   const id_Pago = 3; //  ID correspondiente
-//   //esta llamada es la que tienes que cambiar para consultar la imagen
-//   this.imageService.obtenerImagenPorId(id_Pago).subscribe(
-//     (imagen: ArrayBuffer) => {
-//       this.createImageFromBlob(new Blob([imagen]));
-//     },
-//     error => {
-//       console.error('Error al obtener la imagen', error);
-//     }
-//   );
-// }
+//menu cambio de contrasenia
+showPopupForm = false;
 
+mostrarFormulario(): void {
+  this.showPopupForm = true;
+}
 
+ocultarFormulario(): void {
+  this.showPopupForm = false;
+}
 
-// createImageFromBlob(image: Blob): void {
-//   const reader = new FileReader();
-//   reader.addEventListener('load', () => {
-//     this.imagenSeleccionada = reader.result as string;
-//   }, false);
-
-//   if (image) {
-//     reader.readAsDataURL(image);
-//   }
-// }
 }

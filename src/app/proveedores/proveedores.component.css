@@ -96,5 +96,12 @@
   }
   
   a {
-    flex-direction: column;
+    display: flex; 
+    flex-direction: row; 
   }
+
+  .botones-tabla{
+    position: relative;
+    z-index: 2;
+  }
+  

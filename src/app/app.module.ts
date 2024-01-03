@@ -56,6 +56,7 @@ import { FiltroFechaPipe } from './pipe/filtro-fecha.pipe';
 import { CuentaComponent } from './cuenta/cuenta.component';
 import { InvitacionComponent } from './invitacion/invitacion.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
+import { RecuperacionContraseniaComponent } from './recuperacion-contrasenia/recuperacion-contrasenia.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
     FiltroFechaPipe,
     CuentaComponent,
     InvitacionComponent,
-    InicioSesionComponent
+    InicioSesionComponent,
+    RecuperacionContraseniaComponent
     
   ],
   imports: [

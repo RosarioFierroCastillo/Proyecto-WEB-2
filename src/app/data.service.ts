@@ -79,13 +79,13 @@ export class DataService {
       }
       else if(op==2){
         return data.correo;
+      }else if(op==3){
+        return data.id_fraccionamiento;
       }
 
     }
 
-  obtener_imagen(){
-    
-  }
+  
 
 }
 

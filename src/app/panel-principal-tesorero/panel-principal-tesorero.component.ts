@@ -23,7 +23,7 @@ export class PanelPrincipalTesoreroComponent {
     {name:"Ingresos Extraordinarios",route:"IngresosExtraordinarios", icon:"call_received"},
     {name:'Ingresos ordinarios',route:"IngresosOrdinarios", icon:"archive"},
     {name:'Proveedores',route:"Proveedores", icon:"store_mall_directory", children: [
-      {name:"Ingresos Extraordinarios",route:"IngresosExtraordinarios", icon:"call_received"}
+      {name:"Proveedores",route:"Proveedores", icon:"call_received"}
     ]}
   ]
 

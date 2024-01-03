@@ -4,10 +4,12 @@ export class Usuario {
     apellido_mat: string;
     telefono: string;
     fecha_nacimiento: string;
+    id_fraccionamiento:string;
+    correo:string;
     contrasenia: string;
     confirmarContrasena: string;
-    correo:string;
-    id_fraccionamiento:string;
+    
+    
     constructor(
         nombre: string,
         apellido_pat: string,
