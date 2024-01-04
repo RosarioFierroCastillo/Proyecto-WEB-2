@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Personas } from './personas.model'; // Asegúrate de importar el modelo de personas
+import { Personas } from './personas.model'; 
 
 @Injectable({
   providedIn: 'root'

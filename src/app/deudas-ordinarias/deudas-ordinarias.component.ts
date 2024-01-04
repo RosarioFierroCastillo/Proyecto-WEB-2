@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common'
   styleUrls: ['./deudas-ordinarias.component.css']
 })
 export class DeudasOrdinariasComponent {
+  tipo_formulario: string='';
   httpclient: any;
   UserGroup: FormGroup;
   deudas: deudas[] = [];
@@ -48,7 +49,7 @@ export class DeudasOrdinariasComponent {
 
     fetchDataDeudas(id_tesorero: any) {
       this.dataService.fetchDataDeudas(id_tesorero).subscribe((deudas: deudas[]) => {
-        console.log(deudas);
+        //console.log(deudas);
         this.deudas = deudas;
       });
     } 
@@ -73,12 +74,13 @@ export class DeudasOrdinariasComponent {
       this.deuda.proximo_pago= deudas.proximo_pago;
     }
     
-agregar_deuda(deudas: {monto: number, nombre: string, descripcion: string, dias_gracia:number, periodicidad: number, recargo: number, id_tesorero: number}){
+agregar_deuda(deudas: {monto: number, nombre: string, descripcion: string, dias_gracia:number, periodicidad: number, recargo: number, id_tesorero: number, id_fraccionamiento:number}){
   console.log(deudas);
-  deudas.id_tesorero = this.dataService.obtener_usuario(1)
+  deudas.id_tesorero = this.dataService.obtener_usuario(1);
+  deudas.id_fraccionamiento= this.dataService.obtener_usuario(3);
   const headers = new HttpHeaders({'myHeader': 'procademy'});
   this.http.post(
-   "https://localhost:44397/api/Deudas/Agregar_Deuda",
+   "https://localhost:7274/api/Deudas/Agregar_Deuda",
     deudas, {headers: headers})
     .subscribe((res) => { 
       console.log(res);
@@ -116,7 +118,7 @@ actualizar_deuda(
 
   console.log("actualizar: ",params)
 
-  return this.http.put("https://localhost:44397/api/Deudas/Actualizar_Deuda", params).subscribe(
+  return this.http.put("https://localhost:7274/api/Deudas/Actualizar_Deuda", params).subscribe(
     (_response) => {
       console.log("actualiza",params)
       this.ngOnInit();
@@ -129,13 +131,75 @@ actualizar_deuda(
 
 
 delete(id_deudas: any){
-  return this.http.delete("https://localhost:44397/api/Deudas/Eliminar_Deuda?id_deudas="+id_deudas).subscribe(
+  return this.http.delete("https://localhost:7274/api/Deudas/Eliminar_Deuda?id_deudas="+id_deudas).subscribe(
     () => {
       this.fetchDataDeudas(this.dataService.obtener_usuario(1));
  
     })
 
 }
+
+/* A PARTIR DE AQUI EMPIEZA LO DE LAS DEUDAS EXTRAORDINARIAS*/
+/* A PARTIR DE AQUI EMPIEZA LO DE LAS DEUDAS EXTRAORDINARIAS*/
+/* A PARTIR DE AQUI EMPIEZA LO DE LAS DEUDAS EXTRAORDINARIAS*/
+
+agregar_deudaExtra(deudas: {monto: number, nombre: string, descripcion: string, id_tesorero: number, proximo_pago: Date}){
+  console.log(deudas);
+  deudas.id_tesorero = this.dataService.obtener_usuario(1);
+  console.log(deudas.id_tesorero);
+  const headers = new HttpHeaders({'myHeader': 'procademy'});
+  this.http.post(
+   "https://localhost:7274/api/Deudas/Agregar_DeudaExtra",
+    deudas, {headers: headers})
+    .subscribe((res) => { 
+      console.log(res);
+    //  this.ngOnInit(); 
+    this.fetchDataDeudasExtra(this.dataService.obtener_usuario(1));
+    this.UserGroup.reset();
+    });
+ 
+}
+
+fetchDataDeudasExtra(id_tesorero: any) {
+  this.dataService.fetchDataDeudasExtra(id_tesorero).subscribe((deudas: deudas[]) => {
+    console.log(deudas);
+    this.deudas = deudas;
+  });
+} 
+
+actualizar_deudaExtra(
+  deudas: {monto: number, nombre: string, descripcion: string, proximo_pago: Date, id_deudas: number}
+){
+ 
+  const params = {
+    monto: deudas.monto,
+    nombre: deudas.nombre,
+    descripcion: deudas.descripcion,
+    id_deudas:  this.id_deudas,
+    proximo_pago: deudas.proximo_pago
+    };
+
+    console.log("deudas: ",deudas)
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+     'Content-Type':  'application/json'
+    })
+  }; 
+
+  console.log("actualizar: ",params)
+
+  return this.http.put("https://localhost:7274/api/Deudas/Actualizar_Deuda", params).subscribe(
+    (_response) => {
+      console.log("actualiza",params)
+      this.ngOnInit();
+      this.UserGroup.reset();
+
+    }
+  )
+
+}
+
 }
 
 

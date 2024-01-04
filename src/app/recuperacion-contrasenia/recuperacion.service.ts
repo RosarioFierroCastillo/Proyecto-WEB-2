@@ -9,7 +9,7 @@ export class RecuperacionService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'https://localhost:7274/Usuarios'; 
+  private apiUrl = 'https://localhost:7274/api/Usuarios'; 
 
   actualizarContrasenia(correo: string,contrasenia: string): Observable<string> {
     const url = `${this.apiUrl}/Actualizar_Contrasenia?correo=${correo}&contrasenia=${contrasenia}`;

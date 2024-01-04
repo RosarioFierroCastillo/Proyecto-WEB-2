@@ -11,8 +11,9 @@ export class AccesoPuertaService {
 
   //https://localhost:7274/Usuarios/Generar_Token
   //https://localhost:7274/Usuarios/Consultar_Correo?id_persona=${userId}
+
   getToken(): Observable<string> {
-    const url = `https://localhost:44397/api/Whatsapp/Generar_Token`;
+    const url = `https://localhost:7274/api/Whatsapp/Generar_Token`;
     // Indicamos al HttpClient que esperamos un texto en la respuesta
     return this.http.get(url, { responseType: 'text' });
   } 

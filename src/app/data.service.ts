@@ -14,8 +14,8 @@ import {formatDate } from '@angular/common';
 export class DataService {
   sesion  = new sesion();
   baseUrl = `https://evaluacionesuas-001-site1.gtempurl.com/Fraccionamientos/Consultar_Fraccionamiento?id_administrador=`;
-  baseUrl1 = `https://localhost:44397/api/Personas/Consultar_Persona?id_administrador=`;
-  baseUrl2 = `https://localhost:44397/Propiedades/Consultar_Propiedades?id_administrador=`;
+  baseUrl1 = `https://localhost:7274/api/Personas/Consultar_Persona?id_administrador=`;
+  baseUrl2 = `https://localhost:7274/Propiedades/Consultar_Propiedades?id_administrador=`;
   date1: any;
   
   
@@ -26,7 +26,7 @@ export class DataService {
   }
 
   fetchDataHikvision(id_administrador: any): Observable<controladores[]> {
-    return this.http.get<controladores[]>("https://localhost:44397/Hikvision/Consultar_Hikvision?id_fraccionamiento="+id_administrador);
+    return this.http.get<controladores[]>("https://localhost:7274/Hikvision/Consultar_Hikvision?id_fraccionamiento="+id_administrador);
   }
 
   fetchDataUsers(id_administrador: any): Observable<usuarios[]> {
@@ -39,33 +39,35 @@ export class DataService {
 
   fetchDataPersonasFraccionamiento(id_fraccionamiento: any, id_administrador: any): Observable<usuarios[]> {
     return this.http.get<usuarios[]>(
-      'https://localhost:44397/api/Personas/Consultar_Personas_Fraccionamiento?id_fraccionamiento='+id_fraccionamiento+
+      'https://localhost:7274/api/Personas/Consultar_Personas_Fraccionamiento?id_fraccionamiento='+id_fraccionamiento+
       '&id_administrador='+id_administrador);
   }
 
   fetchDataPersonasLote(id_lote: any): Observable<inquilinos[]> {
-    return this.http.get<inquilinos[]>('https://localhost:44397/api/Usuario_lote/Consultar_inquilino?id_lote='+id_lote);
+    return this.http.get<inquilinos[]>('https://localhost:7274/api/Usuario_lote/Consultar_inquilino?id_lote='+id_lote);
   }
 
   fetchDataDeudas(id_tesorero: any): Observable<deudas[]> {
-    return this.http.get<deudas[]>('https://localhost:44397/api/Deudas/Consultar_Deuda?id_tesorero='+id_tesorero);
+    return this.http.get<deudas[]>('https://localhost:7274/api/Deudas/Consultar_Deuda?id_tesorero='+id_tesorero);
   }
 
   fetchDataDeudasExtra(id_tesorero: any): Observable<deudas[]> {
-    return this.http.get<deudas[]>('https://localhost:44397/api/Deudas/Consultar_DeudaExtra?id_tesorero='+id_tesorero);
+    return this.http.get<deudas[]>('https://localhost:7274/api/Deudas/Consultar_DeudaExtra?id_tesorero='+id_tesorero);
   }
 
-  fetchDataDeudores(): Observable<deudores[]> {
-    return this.http.get<deudores[]>('https://localhost:44397/api/Deudas_Usuario/Consultar_Deudores');
+  fetchDataDeudores(id_fraccionamiento:number): Observable<deudores[]> {
+    return this.http.get<deudores[]>('https://localhost:7274/api/Deudas_Usuario/Consultar_Deudores?id_fraccionamiento='+id_fraccionamiento);
   }
 
   restringir_acceso(id_deuda: any): Observable<deudores[]> {
-    return this.http.get<deudores[]>('https://localhost:44397/api/Deudas_Usuario/Restringir_acceso?id_deuda='+id_deuda);
+    return this.http.get<deudores[]>('https://localhost:7274/api/Deudas_Usuario/Restringir_acceso?id_deuda='+id_deuda);
   }
 
   iniciar_sesion1(sesion: {username: string, password:string}):Observable<sesions[]>{
-  let direccion = "https://evaluacionesuas-001-site1.gtempurl.com/Sesion/Iniciar_Sesion?correo="+sesion.username+"&contrasenia="+sesion.password;
+  let direccion = "https://localhost:7274/Sesion/Iniciar_Sesion?correo="+sesion.username+"&contrasenia="+sesion.password;
   return this.http.get<sesions[]>(direccion);
+  //https://localhost:7274
+  //https://evaluacionesuas-001-site1.gtempurl.com
   }
 
   fecha(date: Date){

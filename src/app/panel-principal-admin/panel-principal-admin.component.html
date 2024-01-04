@@ -10,7 +10,7 @@
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <h2><img src="./assets/logo2.png" id="logo"><img></h2>
     <a><h2 class="example-app-name">{{usuario}}</h2><h6>administrador</h6></a>
-    <h2><img [src]="imagenURL" alt="Imagen" *ngIf="imagenURL !== ''" id="usuario" width="60" height="60"></h2>
+    <h2><img [src]="imagenURL" alt="Imagen" *ngIf="imagenURL !== ''" id="usuario" width="60" height="60" style="border-radius: 80%;"></h2>
   </mat-toolbar>
   
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">

@@ -8,9 +8,9 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 2%;
+    margin-top: 1px;
     position:absolute; top:23px; left:20px;
-    margin-left: 33%;
+    margin-left: 1%;
     margin-bottom: 400px;
   }
   
@@ -70,10 +70,10 @@
   }
   
   table{
-    position:absolute; top:23px; left:450px;
+    position:absolute; top:10%; left:28%;
     width: 800px;
   }
-
+  
   .div-opciones-deuda{
     margin-left: 45%;
     margin-top: 1%;
@@ -83,5 +83,5 @@
   .select-deuda{
     background-color: #EDFBE6;
   }
-  
+
   

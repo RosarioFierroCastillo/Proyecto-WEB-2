@@ -10,7 +10,7 @@ export class ImagenService {
   constructor(private http: HttpClient) { }
 
   //private apiUrl = 'https://evaluacionesuas-001-site1.gtempurl.com/Acuerdos';
-  private apiUrl = 'https://localhost:7274/Usuarios'; 
+  private apiUrl = 'https://localhost:7274/api/Usuarios'; 
 
 
  

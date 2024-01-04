@@ -47,8 +47,8 @@ export class InvitacionComponent {
     this.invitacionService.generarInvitacion(token,correoElectronico, idFraccionamiento)
       .subscribe(
         response => {
-          console.log('Success:', response);
-          this.enviarCorreo("fierro_ross@live.com.mx","http://localhost:4200/Invitacion?token="+token);
+          console.log('Success:',correoElectronico, response);
+          this.enviarCorreo(correoElectronico,"http://localhost:4200/Invitacion?token="+token);
         },
         error => {
           console.error('Error al generar la invitación:', error);
@@ -58,7 +58,8 @@ export class InvitacionComponent {
   }
   
   ngOnInit(): void {
-    this.obtenerDatosInvitacion();
+    //this.obtenerDatosInvitacion();
+    this.generarInvitacion("urquidymariana@gmail.com",15);
   }
 
   obtenerDatosInvitacion(){

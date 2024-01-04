@@ -88,3 +88,45 @@ table{
   margin: auto;
 }
 
+/*css de la tabla de egresos*/
+
+.tabla-egresos {
+  text-align: center;
+  width: 610px;
+  border-collapse: collapse;
+  margin: auto;
+}
+
+.tabla-egresos th,
+.tabla-egresos td {
+  padding: 10px;
+ 
+}
+
+.tabla-egresos th {
+  background-color: transparent;
+}
+
+.botones-tabla {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Estilo para el contenedor de la tabla */
+.contenedor-tabla {
+  width: 70%;
+  margin: auto;
+  padding: 20px;
+  margin-top: 20px; /* Ajuste en el margin-top */
+  position: relative;
+  
+}
+
+.titulo {
+  text-align: center;
+  color: rgb(0, 0, 0);
+}

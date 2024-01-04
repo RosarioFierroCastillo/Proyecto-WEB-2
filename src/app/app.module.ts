@@ -57,6 +57,7 @@ import { CuentaComponent } from './cuenta/cuenta.component';
 import { InvitacionComponent } from './invitacion/invitacion.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { RecuperacionContraseniaComponent } from './recuperacion-contrasenia/recuperacion-contrasenia.component';
+import { ConsultarDeudasComponent } from './consultar-deudas/consultar-deudas.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { RecuperacionContraseniaComponent } from './recuperacion-contrasenia/rec
     CuentaComponent,
     InvitacionComponent,
     InicioSesionComponent,
-    RecuperacionContraseniaComponent
+    RecuperacionContraseniaComponent,
+    ConsultarDeudasComponent
     
   ],
   imports: [

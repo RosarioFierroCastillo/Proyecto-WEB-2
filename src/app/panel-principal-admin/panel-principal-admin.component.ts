@@ -26,15 +26,15 @@ export class PanelPrincipalAdminComponent {
     {name:"Notificaciones", route:"Notificaciones", icon:"priority_high"},
     {name:"Propiedades", route:"Propiedades", icon:"explore", 
     children: [
-      {name:"Agregar", route:"Propiedades", icon:"assignment_ind", children: []},
+      {name:"Agregar", route:"Propiedades", icon:"assignment_ind"},
       {name:"Consultar", route:"ConsultarPropiedades", icon:"class"}
     ]},
     {name:"Controlador",route:"Fraccionamientos", icon:"cast_connected"},
     {name:'Usuarios',route:"Usuarios", icon:"supervised_user_circle", 
     children: [
-      {name:"Agregar", route:"ConsultarUsuario", icon:"person_add", 
+      {name:"Agregar", route:"AgregarUsuario", icon:"person_add", 
       children: []},
-      {name:"Consultar", route:"AgregarUsuario", icon:"class"}
+      {name:"Consultar", route:"ConsultarUsuario", icon:"class"}
     ]},
     {name:"Configuracion",route:"Settings",icon:"settings"}
    //{name:'Salir',route:'Home', icon:"exit_to_app"}
@@ -48,16 +48,7 @@ export class PanelPrincipalAdminComponent {
     this.router.navigate(['../']);
   }
 
-  fillerContent = Array.from(
-    {length: 50},
-    () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-  );
-
+ 
   private _mobileQueryListener: () => void;
 Nav: any;
 usuario: any;
@@ -88,13 +79,17 @@ usuario: any;
 
   imagenURL: string = '';
   Cargar_Imagen(id_persona: number){
-    const id_Pago = 3; //  ID correspondiente
     this.imagenService.obtenerImagenPorId(id_persona).subscribe(
       (imagen: ArrayBuffer) => {
-        this.createImageFromBlob(new Blob([imagen]));
+        if(imagen){
+          this.createImageFromBlob(new Blob([imagen]));
+        }else{
+          this.imagenURL='assets/usuario.png';
+        }
       },
       error => {
         console.error('Error al obtener la imagen', error);
+        this.imagenURL='assets/usuario.png';
       }
     );
   }

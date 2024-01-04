@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {ChangeDetectorRef, OnDestroy, OnInit} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout'
 import { Router } from "@angular/router";
+import { ImagenService } from '../panel-principal-admin/imagen.service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-panel-principal-tesorero',
@@ -9,6 +11,7 @@ import { Router } from "@angular/router";
   styleUrls: ['./panel-principal-tesorero.component.css']
 })
 export class PanelPrincipalTesoreroComponent {
+  usuario: any;
 
   mobileQuery: MediaQueryList;
 
@@ -16,15 +19,17 @@ export class PanelPrincipalTesoreroComponent {
 
 
   fillerNav=[
-    {name:"Deudas Ordinarias", route:"DeudasOrdinarias", icon:"border_color"},
-    {name:"Deudas Extraordinarias", route:"DeudasExtraordinarias", icon:"border_color"},
+    {name:"Deudas", route:"", icon:"border_color",children:[
+      {name:"Agregar Deudas", route:"Deudas", icon:"border_color"},
+    {name:'Consultar Deudas', route:'ConsultarDeudas', icon:'border_color'},
+    ]},
     {name:"Deudores", route:"Deudores", icon:"report_problem"},
     {name:"Egresos", route:"Egresos", icon:"call_made"},
     {name:"Ingresos Extraordinarios",route:"IngresosExtraordinarios", icon:"call_received"},
     {name:'Ingresos ordinarios',route:"IngresosOrdinarios", icon:"archive"},
-    {name:'Proveedores',route:"Proveedores", icon:"store_mall_directory", children: [
-      {name:"Proveedores",route:"Proveedores", icon:"call_received"}
-    ]}
+    {name:'Proveedores',route:"Proveedores", icon:"store_mall_directory"},
+    {name:'Configuracion',route:'Settings',icon:'settings'}
+    
   ]
 
   exit() {
@@ -32,21 +37,12 @@ export class PanelPrincipalTesoreroComponent {
     this.router.navigate(['../']);
   }
 
-  fillerContent = Array.from(
-    {length: 50},
-    () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-  );
 
   private _mobileQueryListener: () => void;
 Nav: any;
     
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private router:Router) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private router:Router,private imagenService: ImagenService, private data:DataService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -59,9 +55,39 @@ Nav: any;
   shouldRun = true;
 
   ngOnInit(): void {
+    this.usuario = this.data.obtener_usuario(2);
+    this.Cargar_Imagen(this.data.obtener_usuario(1));
     
   }
 
+  
+  imagenURL: string = '';
+  Cargar_Imagen(id_persona: number){
+    this.imagenService.obtenerImagenPorId(id_persona).subscribe(
+      (imagen: ArrayBuffer) => {
+        if(imagen){
+          this.createImageFromBlob(new Blob([imagen]));
+        }else{
+          this.imagenURL='assets/usuario.png';
+        }
+      },
+      error => {
+        console.error('Error al obtener la imagen', error);
+        this.imagenURL='assets/usuario.png';
+      }
+    );
+  }
+
+  createImageFromBlob(image: Blob): void {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      this.imagenURL = reader.result as string;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+  }
   //Configuracion del submenu para que no se abra dos veces
   submenuAbierto: number = -1;
   abrirSubmenu(index: number): void {

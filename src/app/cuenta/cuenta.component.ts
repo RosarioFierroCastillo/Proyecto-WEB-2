@@ -150,9 +150,9 @@ export class CuentaComponent {
   uploadFileToService(): void {
     if (this.archivoSeleccionado) { // Verificar si archivoSeleccionado no es null
       this.imageService.PostFile(this.dataService.obtener_usuario(1), this.archivoSeleccionado)
-        .subscribe(response => {
+        .subscribe((response: any) => {
           // Manejar la respuesta del servicio si es necesario
-          console.log('Archivo cargado con éxito', response);
+          console.log('Archivo cargado con éxito');
         }, error => {
           // Manejar errores si la carga falla
           console.error('Error al cargar el archivo', error);

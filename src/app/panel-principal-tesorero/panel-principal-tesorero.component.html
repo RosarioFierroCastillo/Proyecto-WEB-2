@@ -9,8 +9,8 @@
   <mat-toolbar color="black" class="example-toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <h2><img src="./assets/logo2.png" id="logo"><img></h2>
-    <a><h2 class="example-app-name">Mariana Urquidy</h2><h6>tesorero</h6></a>
-    <h2><img src="./assets/usuario.png" id="usuario"><img></h2>
+    <a><h2 class="example-app-name">{{usuario}}</h2><h6>Tesorero</h6></a>
+    <h2><img [src]="imagenURL" alt="Imagen" *ngIf="imagenURL !== ''" id="usuario" width="60" height="60" style="border-radius: 80%;"></h2>
   </mat-toolbar>
   
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">

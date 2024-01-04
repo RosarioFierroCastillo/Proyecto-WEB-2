@@ -26,7 +26,7 @@ export class DeudoresComponent {
   constructor(private http: HttpClient, private dataService: DataService, private fb: FormBuilder){}
 
   fetchDataDeudores() {
-    this.dataService.fetchDataDeudores().subscribe((deudores: deudores[]) => {
+    this.dataService.fetchDataDeudores(this.dataService.obtener_usuario(3)).subscribe((deudores: deudores[]) => {
       console.log(deudores);
       this.deudores = deudores;
     });
@@ -39,7 +39,9 @@ export class DeudoresComponent {
     }); 
   }
 
-
+  delete(id_deuda:any){
+    
+  }
 
   
 }

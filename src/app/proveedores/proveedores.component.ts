@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ProveedoresService } from './proveedores.service';
 import { Proveedor } from './proveedor.model';
 import { DataService } from '../data.service';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-proveedores',
   templateUrl: './proveedores.component.html',
@@ -11,15 +12,12 @@ export class ProveedoresComponent {
   idFraccionamiento: number | undefined;
   respuestaProveedores: string | null = null;
   proveedores: Proveedor[] = [];
+  id_proveedor:number=0;
   
   constructor(private ProveedoresService: ProveedoresService, private dataservice:DataService) {}
 
   ngOnInit(): void {
-    //MARIANA, QUI VA A IR EL ID DEL FRACCIONAMIENTO DEL TESORERO
-    //OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    //this.idFraccionamiento = 15;
-    //MARIANA, QUI VA A IR EL ID DEL FRACCIONAMIENTO DEL TESORERO
-    //OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    this.proveedorModel.idFraccionamiento=this.dataservice.obtener_usuario(3);
     this.cargarProveedores(this.dataservice.obtener_usuario(3));
   }
 
@@ -34,20 +32,11 @@ export class ProveedoresComponent {
     const direccion = formulario.direccion;
     const funcion = formulario.funcion;
   
-    this.ProveedoresService.agregarProveedor(
-      idFraccionamiento,
-      nombre,
-      apellidoPaterno,
-      apellidoMaterno,
-      telefono,
-      tipo,
-      direccion,
-      funcion
-    ).subscribe(
-      (respuesta: string) => {
-        this.respuestaProveedores=respuesta;
-        this.cargarProveedores(this.dataservice.obtener_usuario(3));//MARIANA, QUI VA A IR EL ID DEL FRACCIONAMIENTO DEL TESORERO
-        //OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    this.ProveedoresService.agregarProveedor(idFraccionamiento,nombre,apellidoPaterno,apellidoMaterno,telefono,tipo,direccion,funcion
+      ).subscribe(
+      (respuesta: boolean) => {
+        //this.respuestaProveedores=respuesta;
+        this.cargarProveedores(this.dataservice.obtener_usuario(3));
         console.log('Respuesta:', respuesta);
       },
       (error) => {
@@ -55,7 +44,7 @@ export class ProveedoresComponent {
         // Manejo de errores
       }
     );
-    
+    this.limpiarCampos();
     
   }
 
@@ -67,24 +56,93 @@ export class ProveedoresComponent {
       },
       (error) => {
         console.error('Error al obtener proveedores:', error);
+        Swal.fire({
+          title: 'Error al obtener proveedores',
+          text: 'Consulte al administrador de la pagina '+ error,
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
       }
     );
   }
 
   eliminarProveedor(idProveedor: number): void {
-    const idFraccionamiento = this.dataservice.obtener_usuario(3); // OJOOOOOOOOOOOOOOOOOOO MARIANA
+    const idFraccionamiento = this.dataservice.obtener_usuario(3); 
   
     this.ProveedoresService.eliminarProveedor(idFraccionamiento, idProveedor).subscribe(
-      (respuesta: string) => {
+      (respuesta: boolean) => {
         console.log('Respuesta:', respuesta);
-        this.respuestaProveedores=respuesta;
-        this.cargarProveedores(idFraccionamiento); // Vuelve a cargar la lista después de eliminar
+        //this.respuestaProveedores=respuesta;
+        this.cargarProveedores(idFraccionamiento); 
+
+        Swal.fire({
+          title: 'Proveedor eliminado correctamente',
+          text: '',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
       },
       (error) => {
         console.error('Error al eliminar proveedor:', error);
+        Swal.fire({
+          title: 'Error al eliminar proveedor',
+          text: 'Consulte al administrador de la pagina '+ error,
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+        
       }
     );
     this.cargarProveedores(this.dataservice.obtener_usuario(3));
+  }
+
+  actualizarProveedor(formulario: any): void {
+    const idFraccionamiento = this.dataservice.obtener_usuario(3); 
+    const nombre = formulario.nombre;
+    const apellidoPaterno = formulario.apellido_Paterno;
+    const apellidoMaterno = formulario.apellido_Paterno;
+    const telefono = formulario.telefono;
+    const tipo = formulario.tipo;
+    const direccion = formulario.direccion;
+    const funcion = formulario.funcion;
+    this.ProveedoresService.actualizarProveedor(this.id_proveedor, idFraccionamiento, nombre, apellidoPaterno, apellidoMaterno, telefono, tipo, direccion, funcion)
+      .subscribe(
+        (respuesta: boolean) => {
+          if (respuesta) {
+            this.id_proveedor=0;
+            this.limpiarCampos();
+            console.log('Proveedor actualizado correctamente');
+            this.cargarProveedores(idFraccionamiento);
+
+            Swal.fire({
+              title: 'Proveedor actualizado correctamente',
+              text: '',
+              icon: 'success',
+              confirmButtonText: 'Aceptar'
+            });
+            
+            
+          } else {
+            console.error('Error al actualizar proveedor');
+            Swal.fire({
+              title: 'Error al actualizar proveedor',
+              text: '',
+              icon: 'error',
+              confirmButtonText: 'Aceptar'
+            });
+            
+          }
+        },
+        (error) => {
+          console.error('Error en la solicitud:', error);
+          Swal.fire({
+            title: 'Error en la consulta',
+            text: 'Consulte al administrador d ela pagina',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
+        }
+      );
   }
 
 
@@ -114,8 +172,22 @@ export class ProveedoresComponent {
       direccion: proveedorSeleccionado.direccion,
       funcion: proveedorSeleccionado.funcion
     };
+
+    this.id_proveedor=proveedorSeleccionado.id_proveedor;
   }
 
+  limpiarCampos(){
+    this.proveedorModel = {
+      idFraccionamiento: String(this.dataservice.obtener_usuario(3)),
+      nombre: '',
+      apellido_Paterno: '',
+      apellido_Materno: '',
+      telefono: '',
+      tipo: '',
+      direccion: '',
+      funcion: ''
+    };
+  }
 
 
   
