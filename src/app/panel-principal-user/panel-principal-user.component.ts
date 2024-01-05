@@ -3,6 +3,7 @@ import {ChangeDetectorRef, OnDestroy, OnInit} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import { DataService } from '../data.service';
 import { Router } from "@angular/router";
+import { ImagenService } from '../panel-principal-admin/imagen.service';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class PanelPrincipalUserComponent {
     {name:"Proveedores", route:"Proveedores_usuarios", icon:"explore"},
     {name:"Acceso a puerta",route:"AccesoPuerta", icon:"dashboard"},
     {name:'Acuerdos',route:"Acuerdos_usuarios", icon:"supervised_user_circle"},
+    {name:'Configuracion',route:"Settings", icon:"settings"},
     {name:'Administracion',route:"Administracion", icon:"supervised_user_circle", children: [
       {name:'Acuerdos',route:"Acuerdos_usuarios", icon:"supervised_user_circle"}
     ]},
@@ -35,21 +37,13 @@ exit() {
   this.router.navigate(['../']);
 }
 
-  fillerContent = Array.from(
-    {length: 50},
-    () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-  );
+  
 
   private _mobileQueryListener: () => void;
 Nav: any;
     
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private dataService: DataService,private router:Router) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private dataService: DataService,private router:Router, private imagenService:ImagenService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -63,5 +57,34 @@ Nav: any;
 
   ngOnInit(): void {
     this.usuario = this.dataService.obtener_usuario(2);
+    this.Cargar_Imagen(this.dataService.obtener_usuario(1));
+  }
+
+  imagenURL: string = '';
+  Cargar_Imagen(id_persona: number){
+    this.imagenService.obtenerImagenPorId(id_persona).subscribe(
+      (imagen: ArrayBuffer) => {
+        if(imagen){
+          this.createImageFromBlob(new Blob([imagen]));
+        }else{
+          this.imagenURL='assets/usuario.png';
+        }
+      },
+      error => {
+        console.error('Error al obtener la imagen', error);
+        this.imagenURL='assets/usuario.png';
+      }
+    );
+  }
+
+  createImageFromBlob(image: Blob): void {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      this.imagenURL = reader.result as string;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
   }
 }

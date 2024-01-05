@@ -10,7 +10,7 @@ export class NotificacionesService {
 
   
 
-  private apiUrl = 'https://localhost:44397/Notificaciones/'; // URL base de la API
+  private apiUrl = 'https://localhost:7274/Notificaciones/'; // URL base de la API
 
   constructor(private http: HttpClient) {}
 
@@ -24,8 +24,8 @@ export class NotificacionesService {
     return this.http.get<Notificaciones[]>(url);
   }
 
-  eliminarNotificacion(idNotificacion: number, idFraccionamiento: number) {
-    const url = `${this.apiUrl}Eliminar_Notificacion?id_notificacion=${idNotificacion}&id_fraccionamiento=${idFraccionamiento}`;
+  eliminarNotificacion(idNotificacion: number) {
+    const url = `${this.apiUrl}Eliminar_Notificacion?id_notificacion=${idNotificacion}`;
     return this.http.delete(url,{ responseType: 'text' });
   }
 

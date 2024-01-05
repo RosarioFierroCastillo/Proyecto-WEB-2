@@ -4,7 +4,8 @@ import { PersonasService } from './personas.service';
 import { NotificacionesService } from '../notificaciones/notificaciones.service';
 import { Notificaciones } from './notificaciones.model';
 import { usuario, usuarios } from "../modelos/usuarios";
-
+import { DataService } from '../data.service';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-notificaciones',
   templateUrl: './notificaciones.component.html',
@@ -12,7 +13,7 @@ import { usuario, usuarios } from "../modelos/usuarios";
 })
 export class NotificacionesComponent {
   constructor(private personasService: PersonasService, private NotificacionesService:NotificacionesService,
-    private notificacionesService:NotificacionesService ) { }
+    private notificacionesService:NotificacionesService,private dataservice:DataService ) { }
   personas: Personas[] = [];
 
   id_fraccionamineto: number=15;
@@ -20,7 +21,7 @@ export class NotificacionesComponent {
   idNotificacion: number | undefined;
   notificaciones: Notificaciones[] = [];
   tipoSeleccionado: string = 'General';
-  idFraccionamiento: number = 15;
+  //idFraccionamiento: number = 15;
   idUsuario: number = 0;
   filtroNotificaciones: "" | undefined;
   usuarios: usuarios[] = [];
@@ -28,18 +29,28 @@ export class NotificacionesComponent {
   
 
   ngOnInit(): void {
+    this.id_fraccionamineto=this.dataservice.obtener_usuario(3);
     this.consultarPersonas(this.id_fraccionamineto);
+    this.consultarTodasNotificaciones();
+    
   }
 
 
-  eliminarNotificacionPorId(): void {
+  eliminarNotificacionPorId(id_notificacion:number): void {
+    this.idNotificacion=id_notificacion;
     if (this.idNotificacion !== undefined) {
-      this.NotificacionesService.eliminarNotificacion(this.idNotificacion, this.id_fraccionamineto ) // Agrega el id_fraccionamiento si es necesario
+      this.NotificacionesService.eliminarNotificacion(this.idNotificacion ) // Agrega el id_fraccionamiento si es necesario
         .subscribe(
           (respuesta: string) => {
             this.respuestaNotificacion =respuesta;
             console.log('Respuesta al eliminar notificación:', respuesta);
-            // Manejar la respuesta del servidor
+            Swal.fire({
+              title: 'Notificacion eliminada correctamente',
+              text: '',
+              icon: 'success',
+              confirmButtonText: 'Aceptar'
+            });
+            this.actualizarNotificaciones();
           },
           (error) => {
             this.respuestaNotificacion =error;
@@ -69,11 +80,18 @@ export class NotificacionesComponent {
 
   agregarNotificacion(formulario: any): void {
     //const idFraccionamiento = parseInt(formulario.fraccionamiento);
-    const idFraccionamiento = 15;
+    const idFraccionamiento = this.id_fraccionamineto;
     //console.log(idFraccionamiento);
     const tipo = formulario.tipo;
-    //console.log(tipo);
-    const destinatarioId = parseInt(formulario.destinatario.split(' - ')[0]);
+    console.log(tipo);
+    let destinatarioId=0;
+    if(tipo=='general'){
+    destinatarioId=0;
+    }else if(tipo=='individual'){
+      destinatarioId = parseInt(formulario.destinatario.split(' - ')[0]);
+    }else{
+      return;
+    }
     //console.log(destinatarioId);
     const asunto = formulario.asunto;
     //console.log(asunto);
@@ -85,10 +103,22 @@ export class NotificacionesComponent {
         (respuesta: string) => {
           this.respuestaNotificacion =respuesta;
           console.log('Respuesta:', respuesta);
+          Swal.fire({
+            title: 'Notificacion agregada correctamente',
+            text: '',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
         },
         (error) => {
           console.error('Error al agregar notificación Angular:', error);
-          // Manejo de errores
+          Swal.fire({
+            title: 'Error al agregar notificación',
+            text: '',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
+        
         }
       );
   }
@@ -102,12 +132,33 @@ export class NotificacionesComponent {
       (error) => {
         // Manejo de errores
         console.error('Error:', error);
+        Swal.fire({
+          title: 'Error al consultar a las personas',
+          text: 'Contacte con el administrador de la pagina',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
       }
     );
   }
 
+  consultarTodasNotificaciones(){
+    this.notificaciones = []; // Vaciar el arreglo antes de cargar nuevas notificaciones
+      this.idUsuario = 0;
+    
 
-  
+    this.notificacionesService.consultarNotificacionesPorId(this.id_fraccionamineto, this.idUsuario)
+      .subscribe(
+        (notificaciones: Notificaciones[]) => {
+          console.log(notificaciones);
+          this.notificaciones = notificaciones;
+        },
+        (error) => {
+          console.error('Error al obtener las notificaciones:', error);
+          // Manejo de errores
+        }
+      );
+  }  
 
 
 
@@ -124,7 +175,7 @@ export class NotificacionesComponent {
       this.idUsuario = 1;
     } 
 
-    this.notificacionesService.consultarNotificacionesPorId(this.idFraccionamiento, this.idUsuario)
+    this.notificacionesService.consultarNotificacionesPorId(this.id_fraccionamineto, this.idUsuario)
       .subscribe(
         (notificaciones: Notificaciones[]) => {
           console.log(notificaciones);
