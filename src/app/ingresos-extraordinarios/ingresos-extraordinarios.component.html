@@ -1,5 +1,7 @@
-<body>
-  <div class="contenedor">
+
+
+<body *ngIf="tipo_formulario=='extraordinario'">
+  <div class="contenedor" >
 
     <div class="form">
       <!-- Formulario para agregar un nuevo ingreso extraordinario -->
@@ -8,31 +10,28 @@
         <h2 class="titulo">Ingresos Extraordinarios</h2>
 
 
-        <label for="usuario">Usuario:</label>
-        <select id="usuario" name="usuario">
-          <option value="usuario1">Usuario 1</option>
-          <option value="usuario2">Usuario 2</option>
-          <!-- Agrega más opciones según sea necesario -->
-        </select>
+        <div>
+          <label for="usuarioExtra">Usuario:</label>
+        <select id="usuarioExtra" name="usuarioExtra" required ngModel (change)="onChangeUsuario($event)" >
+          <option  *ngFor="let usuario of personas">
+              {{usuario.id_persona}}- {{usuario.nombre}} {{usuario.apellido_pat}} {{usuario.apellido_mat}}
+          </option>
+      </select>
+        </div>
 
 
 
-        <label for="deuda">Deuda:</label>
-        <select id="deuda" name="deuda">
-          <option value="deuda1">Deuda 1</option>
-          <option value="deuda2">Deuda 2</option>
-
-        </select>
-
-
-
-        <label for="montoDeuda">Monto de Deuda:</label>
-        <input type="text" id="montoDeuda" name="montoDeuda" value="ValorMontoDeuda" disabled>
+        <label for="deudaExtra">Deuda:</label>
+        <select id="deudaExtra" name="deudaExtra" required ngModel (change)="onChangeDeuda($event)" >
+          <option *ngFor="let deuda of deudasDelUsuario">
+              {{deuda.nombre_deuda}} 
+          </option>
+      </select>
 
 
 
-        <label for="cantidadPagar">Cantidad a Pagar:</label>
-        <input type="number" id="cantidadPagar" name="cantidadPagar" required>
+        <label for="montoDeudaExtra">Monto de Deuda:</label>
+        <input type="text" id="montoDeudaExtra" name="montoDeudaExtra" value="montoDeudaExtra" disabled [(ngModel)]="monto">
 
 
 
@@ -46,14 +45,16 @@
 
 
 
-        <label for="fechaCorte">Fecha de Corte:</label>
-        <input type="text" id="fechaCorte" name="fechaCorte" value="ValorFechaCorte" disabled>
+        <label for="fechaCorteExtra">Fecha de Corte:</label>
+        <input type="text" id="fechaCorteExtra" name="fechaCorteExtra" value="fechaCorteExtra" disabled [(ngModel)]="fecha_corte">
 
 
         <div class="botones-container">
-        <button class="boton-verde" onclick="liquidarAbonar()">Liquidar/Abonar</button>
+        <button class="boton-verde" (click)="pagarDeudaExtraordinaria()">Pagar</button>
       </div>
       </form>
     </div>
   </div>
 </body>
+
+

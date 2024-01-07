@@ -39,9 +39,9 @@
 
                     <label for="diasGracia">Días de gracia:</label>
                     <select id="dias_gracia" name="dias_gracia" formControlName="dias_gracia" [(ngModel)]="deuda.dias_gracia">
-                        <option value="7">Cada 7 días</option>
-                        <option value="15">Cada 15 días</option>
-                        <option value="30">Mensualmente</option>
+                        <option value="7">7 días</option>
+                        <option value="15">15 días</option>
+                        <option value="30">30 dias</option>
                     </select>
 
                     <label for="periodicidad">Periodicidad:</label>
@@ -50,6 +50,9 @@
                         <option value="15">Cada 15 días</option>
                         <option value="30">Mensualmente</option>
                     </select>
+
+                    <label for="proximo_pagoOrdinario">Fecha de corte:</label>
+                    <input type="date" id="proximo_pagoOrdinario" name="proximo_pagoOrdinario" formControlName="proximo_pagoOrdinario" [(ngModel)]="fechaProximoPago" required >
 
                     <label for="recargo">Monto del recargo:</label>
                     <input type="text" id="recargo" name="recargo" placeholder="Ingrese el monto del recargo"
@@ -72,7 +75,7 @@
     <div class="form">
         <h2 class="titulo">Deudas Extraordinarias</h2>
         <!-- Formulario para agregar una nueva deuda ordinaria -->
-        <form id="formCrear" class="Formulario" #form="ngForm" [formGroup]="UserGroup">
+        <form id="formCrear" class="Formulario" #form="ngForm" [formGroup]="UserGroup2">
 
                 <label for="fraccionamiento">Aplicar a:</label>
                 <select type="text" id="tipo_persona" name="tipo_persona" value="tipo_persona"
@@ -84,7 +87,7 @@
                 </select>
 
                 <label for="monto">Monto:</label>
-                <input type="text" id="monto" name="monto" placeholder="Ingrese el monto" required
+                <input type="number" id="monto" name="monto" placeholder="Ingrese el monto" required
                 formControlName="monto" [(ngModel)]="deuda.monto">
 
                 <label for="nombreDeuda">Nombre de Deuda:</label>
@@ -96,7 +99,7 @@
                 formControlName="descripcion" [(ngModel)]="deuda.descripcion"></textarea>
 
                 <label for="proximo_pago">Fecha de corte:</label>
-                <input type="date" id="proximo_pago" name="proximo_pago" formControlName="proximo_pago" [(ngModel)]="deuda.proximo_pago" required ngModel>
+                <input type="date" id="proximo_pago" name="proximo_pago" formControlName="proximo_pago" [(ngModel)]="fechaCorte_extra" required >
 
 
 

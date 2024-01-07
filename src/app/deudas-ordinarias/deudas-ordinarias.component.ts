@@ -16,6 +16,7 @@ export class DeudasOrdinariasComponent {
   tipo_formulario: string='';
   httpclient: any;
   UserGroup: FormGroup;
+  UserGroup2: FormGroup;
   deudas: deudas[] = [];
   deuda =new deuda();
   id_deudas: any;
@@ -31,8 +32,23 @@ export class DeudasOrdinariasComponent {
          dias_gracia: ['', Validators.required],
          periodicidad: ['', Validators.required],
          recargo: ['', Validators.required],
+         proximo_pagoOrdinario: ['', Validators.required],
+         
     
        })
+
+       this.UserGroup2 = this.fb.group({
+        fraccionamiento: ['', Validators.required],
+        monto: ['', Validators.required],
+        nombre: ['', Validators.required],
+        descripcion: ['', Validators.required],
+        dias_gracia: ['', Validators.required],
+        periodicidad: ['', Validators.required],
+        recargo: ['', Validators.required],
+        proximo_pago: ['', Validators.required],
+        
+   
+      })
 
     }
 
@@ -74,10 +90,13 @@ export class DeudasOrdinariasComponent {
       this.deuda.proximo_pago= deudas.proximo_pago;
     }
     
-agregar_deuda(deudas: {monto: number, nombre: string, descripcion: string, dias_gracia:number, periodicidad: number, recargo: number, id_tesorero: number, id_fraccionamiento:number}){
-  console.log(deudas);
-  deudas.id_tesorero = this.dataService.obtener_usuario(1);
+    fechaProximoPago:string='';
+agregar_deuda(deudas: {monto: number, nombre: string, descripcion: string, dias_gracia:number, periodicidad: number, recargo: number, id_tesorero: number, id_fraccionamiento:number,proximo_pago:string}){
   deudas.id_fraccionamiento= this.dataService.obtener_usuario(3);
+  deudas.id_tesorero = this.dataService.obtener_usuario(1);
+  deudas.proximo_pago=this.fechaProximoPago;
+  console.log(deudas);
+ 
   const headers = new HttpHeaders({'myHeader': 'procademy'});
   this.http.post(
    "https://localhost:7274/api/Deudas/Agregar_Deuda",
@@ -143,10 +162,19 @@ delete(id_deudas: any){
 /* A PARTIR DE AQUI EMPIEZA LO DE LAS DEUDAS EXTRAORDINARIAS*/
 /* A PARTIR DE AQUI EMPIEZA LO DE LAS DEUDAS EXTRAORDINARIAS*/
 
-agregar_deudaExtra(deudas: {monto: number, nombre: string, descripcion: string, id_tesorero: number, proximo_pago: Date}){
+
+  fechaCorte_extra:string='';
+  agregar_deudaExtra(deudas: {monto: number, nombre: string, descripcion: string, dias_gracia:number, periodicidad: number, recargo: number, id_tesorero: number, id_fraccionamiento:number,proximo_pago:string}){
+  console.log(this.fechaCorte_extra);
   console.log(deudas);
+  deudas.dias_gracia=0;
+  deudas.periodicidad=0;
+  deudas.recargo=0;
+  deudas.proximo_pago=this.fechaCorte_extra;
+  deudas.id_fraccionamiento= this.dataService.obtener_usuario(3);
   deudas.id_tesorero = this.dataService.obtener_usuario(1);
   console.log(deudas.id_tesorero);
+  console.log(this.fechaCorte_extra);
   const headers = new HttpHeaders({'myHeader': 'procademy'});
   this.http.post(
    "https://localhost:7274/api/Deudas/Agregar_DeudaExtra",

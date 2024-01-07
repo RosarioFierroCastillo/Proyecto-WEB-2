@@ -101,7 +101,7 @@ export class UsuariosComponent {
         //  Codigo_acceso: "123"
       };
 
-      let direccion = "https://localhost:44397/api/Usuarios/Agregar_Usuario";
+      let direccion = "https://localhost:7274/api/Usuarios/Agregar_Usuario";
 
       const headers = new HttpHeaders({ 'myHeader': 'procademy' });
       this.http.post(
@@ -211,10 +211,10 @@ export class UsuariosComponent {
 
 
 
-    return this.http.put("https://localhost:44397/api/Personas/Actualizar_Persona", params).subscribe(
+    return this.http.put("https://localhost:7274/api/Personas/Actualizar_Persona", params).subscribe(
       (_response) => {
         console.log("hola");
-        console.log("https://localhost:44397/api/Personas/Actualizar_Persona", params);
+        console.log("https://localhost:7274/api/Personas/Actualizar_Persona", params);
         
     
         this.ngOnInit();
@@ -239,7 +239,7 @@ export class UsuariosComponent {
 */
   delete(usuario: any) {
     this.id_fracc = usuario['id_persona'];
-    return this.http.delete("https://localhost:44397/api/Personas/Eliminar_Persona?id_persona=" + this.id_fracc).subscribe(
+    return this.http.delete("https://localhost:7274/api/Personas/Eliminar_Persona?id_persona=" + this.id_fracc).subscribe(
       () => {
         this.fetchDataUsers(this.dataService.obtener_usuario(1));
         console.log("hola");

@@ -136,7 +136,7 @@ agregar_administrador(sesion: {username: string, correo: string, password: strin
     
   if(sesion.password == sesion.ppassword){
 
-    let direccion = "https://localhost:44397/api/Personas/Agregar_Administrador?nombre="+sesion.username+"&correo="+sesion.correo+"&contrasenia="+sesion.password;
+    let direccion = "https://localhost:7274/api/Personas/Agregar_Administrador?nombre="+sesion.username+"&correo="+sesion.correo+"&contrasenia="+sesion.password;
 
     const headers = new HttpHeaders({'myHeader': 'procademy'});
     this.http.post(

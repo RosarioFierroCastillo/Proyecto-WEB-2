@@ -106,7 +106,7 @@ fetchData(id_administrador: any) {
 
 /*
 Consultar_fraccionamiento(id_administrador:number):Observable<controladores[]>{
-  let direccion = "https://localhost:44397/Fraccionamientos/Consultar_Fraccionamiento?id_fraccionamiento="+ id_administrador;
+  let direccion = "https://localhost:7274/Fraccionamientos/Consultar_Fraccionamiento?id_fraccionamiento="+ id_administrador;
   return this.http.get<controladores[]>(direccion);
 }
 */
@@ -123,7 +123,7 @@ Agregar_fraccionamiento(controladores: {
   //console.log("id_usuario: "+this.dataService.obtener_usuario(1));
   const headers = new HttpHeaders({'myHeader': 'procademy'});
   this.http.post(
-    "https://localhost:44397/Hikvision/Agregar_Hikvision?id_controlador=1&id_fraccionamiento="+controladores.id_fraccionamiento
+    "https://localhost:7274/Hikvision/Agregar_Hikvision?id_controlador=1&id_fraccionamiento="+controladores.id_fraccionamiento
     +"&user="+controladores.user+
     "&password="+controladores.password+
     "&port="+controladores.port+
@@ -159,7 +159,7 @@ Agregar_fraccionamiento(controladores: {
 
     console.log("actualizar: ",params)
 
-    return this.http.put("https://localhost:44397/Fraccionamientos/Actualizar_Fraccionamiento", params).subscribe(
+    return this.http.put("https://localhost:7274/Fraccionamientos/Actualizar_Fraccionamiento", params).subscribe(
       (_response) => {
         this.ngOnInit();
         this.UserGroup.reset();
@@ -172,7 +172,7 @@ Agregar_fraccionamiento(controladores: {
 */
 /*
   delete(fraccionamiento: any){
-    return this.http.delete("https://localhost:44397/Fraccionamientos/Eliminar_Fraccionamiento?id_fraccionamiento="+this.id_fracc).subscribe(
+    return this.http.delete("https://localhost:7274/Fraccionamientos/Eliminar_Fraccionamiento?id_fraccionamiento="+this.id_fracc).subscribe(
       () => {
         this.fetchData(this.dataService.obtener_usuario(1))
         console.log("hola");

@@ -109,6 +109,7 @@ export class NotificacionesComponent {
             icon: 'success',
             confirmButtonText: 'Aceptar'
           });
+          this.actualizarNotificaciones();
         },
         (error) => {
           console.error('Error al agregar notificación Angular:', error);

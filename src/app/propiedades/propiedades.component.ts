@@ -134,7 +134,7 @@ agregar_inquilino(inquilino: {
 
     console.log("params: ",params)
 
-    let direccion = "https://localhost:44397/api/Usuario_lote/Agregar_inquilino";
+    let direccion = "https://localhost:7274/api/Usuario_lote/Agregar_inquilino";
 
     const headers = new HttpHeaders({ 'myHeader': 'procademy' });
     this.http.post(
@@ -241,7 +241,7 @@ agregar_lote(lote: {
 
     console.log("params: ",params)
 
-    let direccion = "https://localhost:44397/Propiedades/Agregar_Propiedad";
+    let direccion = "https://localhost:7274/Propiedades/Agregar_Propiedad";
 
     const headers = new HttpHeaders({ 'myHeader': 'procademy' });
     this.http.post(
@@ -257,7 +257,7 @@ agregar_lote(lote: {
 
 
   delete(id_lote: any){
-    return this.http.delete("https://localhost:44397/Propiedades/Eliminar_Propiedad?id_lote="+id_lote).subscribe(
+    return this.http.delete("https://localhost:7274/Propiedades/Eliminar_Propiedad?id_lote="+id_lote).subscribe(
       () => {
         this.fetchDataPropiedades(this.dataService.obtener_usuario(1))
         console.log("hola");
@@ -268,7 +268,7 @@ agregar_lote(lote: {
 
 
 delete_user(id_usuario_lote: any){
-    return this.http.delete("https://localhost:44397/api/Usuario_lote/Eliminar_inquilino?id_lote="+id_usuario_lote).subscribe(
+    return this.http.delete("https://localhost:7274/api/Usuario_lote/Eliminar_inquilino?id_lote="+id_usuario_lote).subscribe(
       () => {
         console.log("eliminado", this.id_lote)
         this.fetchDataPersonasLote(this.id_lote);
@@ -308,7 +308,7 @@ delete_user(id_usuario_lote: any){
 
     console.log("actualizar: ",params)
 
-    return this.http.put("https://localhost:44397/Propiedades/Actualizar_Propiedad", params).subscribe(
+    return this.http.put("https://localhost:7274/Propiedades/Actualizar_Propiedad", params).subscribe(
       (_response) => {
         console.log("actualiza",params)
         this.ngOnInit();

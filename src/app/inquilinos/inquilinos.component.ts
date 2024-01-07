@@ -8,9 +8,9 @@ import { inquilinos } from '../modelos/inquilinos';
 })
 export class inquilinoss {
 
-  baseUrl = `https://localhost:44397/Fraccionamientos/Consultar_Fraccionamiento?id_administrador=`;
-  baseUrl1 = `https://localhost:44397/api/Personas/Consultar_Persona?id_administrador=`;
-  baseUrl2 = `https://localhost:44397/Propiedades/Consultar_Propiedades?id_administrador=`;
+  baseUrl = `https://localhost:7274/Fraccionamientos/Consultar_Fraccionamiento?id_administrador=`;
+  baseUrl1 = `https://localhost:7274/api/Personas/Consultar_Persona?id_administrador=`;
+  baseUrl2 = `https://localhost:7274/Propiedades/Consultar_Propiedades?id_administrador=`;
 
   constructor(private http: HttpClient) {}
 
@@ -37,7 +37,7 @@ export class inquilinoss {
   
       console.log("params: ",params)
   
-      let direccion = "https://localhost:44397/api/Usuario_lote/Agregar_inquilino";
+      let direccion = "https://localhost:7274/api/Usuario_lote/Agregar_inquilino";
   
       const headers = new HttpHeaders({ 'myHeader': 'procademy' });
       this.http.post(

@@ -108,10 +108,10 @@ export class CuentaComponent {
 
 
 
-    return this.http.put("https://localhost:44397/api/Personas/Actualizar_Persona", params).subscribe(
+    return this.http.put("https://localhost:7274/api/Personas/Actualizar_Persona", params).subscribe(
       (_response) => {
         console.log("hola");
-        console.log("https://localhost:44397/api/Personas/Actualizar_Persona", params);
+        console.log("https://localhost:7274/api/Personas/Actualizar_Persona", params);
         
     
         this.ngOnInit();

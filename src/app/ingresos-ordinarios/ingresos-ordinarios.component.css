@@ -1,69 +1,182 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f8f8;
+body{
+  background-color: #EDFBE6;
+}
+.contenedor {
+  width: 30%;
+  margin: auto;
+  height: 78%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  position:absolute; top:23px; left:20px;
+  margin-left: 35%;
+  margin-top: 3%;
 }
 
-.container {
-    width: 50%;
-    margin: 20px auto;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    background-color: #3F51B5;
-}
 
 .titulo {
-    text-align: center;
-    color: white;
+  text-align: center;
+  color: rgb(0, 0, 0);
 }
 
-.Formulario {
-    max-width: 400px;
-    margin: 20px auto;
+.form {
+  display: flex;
+  flex-direction: column;
+ 
 }
 
-.form-group {
-    margin-bottom: 15px;
+.Formulario{
+  display: flex;
+  flex-direction: column;
+ 
 }
 
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+.boton-verde, .boton-amarillo, .boton-rojo, .boton-azul{
+  padding: 10px;
+  margin: 10px 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  
+ 
 }
 
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    margin-bottom: 8px;
+/*
+label {
+  margin-top: 10px;
 }
 
-.button-group {
-    text-align: center;
+input {
+  padding: 8px;
+  margin-bottom: 10px;
 }
 
-.green-button,
-.yellow-button,
-.red-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-    font-size: 16px;
+.boton-verde, .boton-amarillo, .boton-rojo, .boton-azul{
+  padding: 10px;
+  margin: 10px 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+*/
+.boton-verde {
+  background-color: #4CAF50; /* Verde */
+
+  
+  color: white;
 }
 
-.yellow-button {
-    background-color: #ffcc00;
+.boton-azul {
+  background-color: blue; /* Azul */
+  color: white;
 }
 
-.red-button {
-    background-color: #ff3333;
+
+table, th ,td, thead, tr {
+  text-align: center;
+  width: 300px; 
+
 }
+
+table{
+  position:absolute; top:23px; left:550px;
+  width: 610px;
+}
+
+.botones-container{
+  margin: auto;
+}
+
+
+/* aqui empieza el css del formulario de ingresos ordinarios*/
+
+.container2 {
+  width: 30%;
+  margin: auto;
+  height: 78%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  position: absolute;
+  top: 23px;
+  left: 20px;
+  margin-left: 35%;
+  margin-top: 3%;
+}
+
+.titulo2 {
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.form2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.Formulario2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.green-button2,
+.yellow-button2,
+.red-button2 {
+  padding: 10px;
+  margin: 10px 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.green-button2 {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.yellow-button2 {
+  background-color: yellow;
+  color: black;
+}
+
+.red-button2 {
+  background-color: red;
+  color: white;
+}
+
+.form-group2 {
+  margin-top: 10px;
+}
+
+.input2 {
+  width: calc(100% - 20px); /* Restar el padding */
+  padding: 8px;
+  margin-bottom: 10px;
+  margin-left: 10px; /* Añadir margen izquierdo para compensar el padding */
+}
+
+/* Estilo para los select específicos del formulario 2 */
+.Formulario2 select {
+  width: calc(100% - 24px); /* Restar el padding y el ancho del borde */
+  padding: 8px;
+  margin-bottom: 10px;
+  margin-left: 12px; /* Añadir margen izquierdo para compensar el padding */
+}
+
+
+
+.div-opciones-deuda{
+  margin-left: 45%;
+  margin-top: 1%;
+  font-size: 26;
+}
+
+.select-deuda{
+  background-color: #EDFBE6;
+}
+
