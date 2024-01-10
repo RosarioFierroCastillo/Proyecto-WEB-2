@@ -9,13 +9,12 @@ import { DatePipe } from '@angular/common'
 import { Personas } from '../ingresos-extraordinarios/personas.model';
 import { PersonasService } from '../ingresos-extraordinarios/personas.service';
 import Swal from 'sweetalert2';
- 
 @Component({
-  selector: 'app-deudas-ordinarias',
-  templateUrl: './deudas-ordinarias.component.html',
-  styleUrls: ['./deudas-ordinarias.component.css']
+  selector: 'app-deudas',
+  templateUrl: './deudas.component.html',
+  styleUrls: ['./deudas.component.css']
 })
-export class DeudasOrdinariasComponent {
+export class DeudasComponent {
   tipo_formulario: string='';
   httpclient: any;
   UserGroup: FormGroup;
@@ -288,5 +287,3 @@ actualizar_deudaExtra(
 }
 
 }
-
-

@@ -197,8 +197,8 @@ export class ProveedoresComponent {
 /*
 
 <a class="btn btn-sm text-white btn-success" style="margin-right: auto;">
-          <span class="glyphicon glyphicon-pencil" aria-hidden="true" (click)="cargarDatosProveedor(proveedor)"></span>
-          </a>
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true" (click)="cargarDatosProveedor(proveedor)"></span>
+            </a>
 
           */
 
@@ -206,8 +206,9 @@ export class ProveedoresComponent {
 
 /*
 
-          <span class="glyphicon glyphicon-remove" aria-hidden="false" (click)="eliminarProveedor(proveedor.id_proveedor)"></span>
-
+      <a class="btn btn-sm text-white btn-success" style="margin-right: auto;">
+            <span class="glyphicon glyphicon-remove" aria-hidden="false" (click)="eliminarProveedor(proveedor.id_proveedor)"></span>
+            </a>
 
 
 */

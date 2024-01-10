@@ -35,6 +35,7 @@ import { InvitacionComponent } from './invitacion/invitacion.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { RecuperacionContraseniaComponent } from './recuperacion-contrasenia/recuperacion-contrasenia.component';
 import { ConsultarDeudasComponent } from './consultar-deudas/consultar-deudas.component';
+import { DeudasComponent } from './deudas/deudas.component';
 
 
 const routes: Routes = [
@@ -79,7 +80,7 @@ const routes: Routes = [
   //inicio panel tesorero
   {path:'PanelTesorero', component:PanelPrincipalTesoreroComponent,
   children:[
-    {path:'Deudas', component:DeudasOrdinariasComponent},
+    {path:'Deudas', component:DeudasComponent},
   {path:'DeudasExtraordinarias', component:DeudasExtraordinariasComponent},
   {path:'ConsultarDeudas',component:ConsultarDeudasComponent},
   {path:'Deudores', component:DeudoresComponent},

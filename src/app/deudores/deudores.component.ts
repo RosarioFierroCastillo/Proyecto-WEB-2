@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
 import { DataService } from '../data.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { DatePipe } from '@angular/common'
+import { PersonasService } from '../ingresos-extraordinarios/personas.service';
+import { Deudores } from '../ingresos-extraordinarios/deudores.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-deudores',
@@ -18,18 +21,45 @@ export class DeudoresComponent {
   deudor =new deudor();
   filtroDeudores:'' | undefined;
 
+  Deudores_totales:Deudores[]=[];
+
 
   ngOnInit(){
-    this.fetchDataDeudores();
+    //this.fetchDataDeudores();
+    this.ConsultarDeudores();
   }
 
-  constructor(private http: HttpClient, private dataService: DataService, private fb: FormBuilder){}
+  constructor(private http: HttpClient, private dataService: DataService, private fb: FormBuilder,private personasService:PersonasService){}
 
-  fetchDataDeudores() {
-    this.dataService.fetchDataDeudores(this.dataService.obtener_usuario(3)).subscribe((deudores: deudores[]) => {
-      console.log(deudores);
-      this.deudores = deudores;
-    });
+  // fetchDataDeudores() {
+  //   this.dataService.fetchDataDeudores(this.dataService.obtener_usuario(3)).subscribe((deudores: deudores[]) => {
+  //     console.log(deudores);
+  //     this.deudores = deudores;
+  //   });
+  // }
+
+  ConsultarDeudores(){
+    this.personasService.consultarDeudoresOrdinarios(this.dataService.obtener_usuario(3)).subscribe(
+      (deudasUsuario: Deudores[]) => {
+       this.Deudores_totales = deudasUsuario
+        console.log('deudas de todos los  usuarios', this.Deudores_totales);
+        if(this.Deudores_totales.length!=0){
+
+        }else{
+          Swal.fire({
+            title: 'El usuario seleccionado no tiene deudas extraordinarias vencidas',
+            text: '',
+            icon: 'warning',
+            confirmButtonText: 'Aceptar'
+          });
+        }
+       
+      },
+      (error) => {
+        // Manejo de errores
+        console.error('Error:', error);
+      }
+    );
   }
 
   restringir_acceso(id_deuda: any) {
@@ -37,6 +67,15 @@ export class DeudoresComponent {
       console.log(deudores);
       this.deudores = deudores;
     }); 
+  }
+
+  calcularDiasRetraso(proximoPago: string): number {
+    const fechaProximoPago = new Date(proximoPago);
+    const hoy = new Date();
+    const diferenciaTiempo = hoy.getTime() - fechaProximoPago.getTime();
+    const diasRetraso = Math.floor(diferenciaTiempo / (1000 * 3600 * 24)); // Calcula los días de diferencia
+
+    return Math.max(0, diasRetraso); // Devuelve al menos cero si la fecha ya ha pasado
   }
 
   delete(id_deuda:any){

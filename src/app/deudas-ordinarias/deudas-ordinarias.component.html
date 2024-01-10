@@ -18,9 +18,10 @@
             <form id="formCrear" class="Formulario" #form="ngForm" [formGroup]="UserGroup">
 
                     <label for="fraccionamiento">Aplicar a:</label>
-                    <select type="text" id="tipo_persona" name="tipo_persona" value="tipo_persona"
-                     formControlName="tipo_persona">
-                     <option value="arrendador">Arrendador</option>
+
+                    <select type="text" id="destinatario" name="destinatario" value="destinatario"
+                     formControlName="destinatario" (change)="onChangeOption($event)">
+                     <option value="arrendatario">Arrendatario</option>
                      <option value="propietario">Propietario</option>
                      <option value="todos">Todos</option>
                     </select>
@@ -78,12 +79,19 @@
         <form id="formCrear" class="Formulario" #form="ngForm" [formGroup]="UserGroup2">
 
                 <label for="fraccionamiento">Aplicar a:</label>
-                <select type="text" id="tipo_persona" name="tipo_persona" value="tipo_persona"
-                 formControlName="tipo_persona">
-                 <option value="arrendador">Arrendador</option>
+                <select type="text" id="destinatario2" name="destinatario2" value="destinatario2"
+                 formControlName="destinatario2" (change)="onChangeOption2($event)">
+                 <option value="arrendatario">Arrendatario</option>
                  <option value="propietario">Propietario</option>
                  <option value="todos">Todos</option>
                  <option value="personalizado">Usuario específico</option>
+                </select>
+
+                <label *ngIf="especifico">Usuario a aplicar:</label>
+                <select *ngIf="especifico" id="cboxpersonas" name="cboxpersonas" required ngModel (change)="onChangeUsuario($event)" >
+                    <option  *ngFor="let usuario of personas">
+                        {{usuario.id_persona}}- {{usuario.nombre}} {{usuario.apellido_pat}} {{usuario.apellido_mat}}
+                    </option>
                 </select>
 
                 <label for="monto">Monto:</label>

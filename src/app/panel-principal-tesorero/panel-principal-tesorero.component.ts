@@ -25,8 +25,11 @@ export class PanelPrincipalTesoreroComponent {
     ]},
     {name:"Deudores", route:"Deudores", icon:"report_problem"},
     {name:"Egresos", route:"Egresos", icon:"call_made"},
-    {name:"Ingresos Extraordinarios",route:"IngresosExtraordinarios", icon:"call_received"},
+    {name:"Ingresos", route:"Egresos", icon:"call_made",children:[
+      {name:"Ingresos Extraordinarios",route:"IngresosExtraordinarios", icon:"call_received"},
     {name:"Ingresos Ordinarios",route:"IngresosOrdinarios", icon:"call_received"},
+    ]},
+    
     {name:'Proveedores',route:"Proveedores", icon:"store_mall_directory"},
     {name:'Configuracion',route:'Settings',icon:'settings'}
     

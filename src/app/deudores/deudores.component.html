@@ -11,44 +11,41 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Concepto</th>
-                            <th>tipo</th>
                             <th>Persona</th>
+                            <th>Tipo de Deuda</th>
+                            <th>Nombre de Deuda</th>
                             <th>Monto</th>
-                            <th>Próximo pago</th>
-                            <th style="text-align:center;width:200px;">
-                                Restringir el acceso
-                            </th>
-                            <th style="text-align:center;width:200px;">
-                                Borrar
-                            </th>
+                            <th>Fecha de pago</th>
+                            <th>Retraso (dias)</th>
+                            <th style="text-align:center;width:200px;">Quitar Acceso</th>
+                            <th style="text-align:center;width:200px;">Conceder Acceso</th>
                         </tr>
                     </thead>
-                    <tbody> 
-                        <tr mat-row matRowDef="columns: displayedcolumns;"
-                            *ngFor="let deudor of deudores | filtroDeudores: 'concepto': filtroDeudores">
-                            <th scope="row">{{deudor.id_deuda}}</th>
-                            <td>{{deudor.concepto}}</td>
-                            <td>{{deudor.persona}}</td>
-                            <td>{{deudor.monto}}</td>
-                            <td class="fecha">{{deudor.proximo_pago}}</td>
+                    <tbody>
+                        <tr *ngFor="let deudor of Deudores_totales; let i = index">
+                            <th scope="row">{{ i + 1 }}</th>
+                            <td>{{ deudor.nombre_persona }}</td>
+                            <td>{{ deudor.tipo_deuda }}</td>
+                            <td>{{ deudor.nombre_deuda }}</td>
+                            <td>{{ deudor.monto }}</td>
+                            <td class="fecha">{{ deudor.proximo_pago }}</td>
+                            <td class="dias-retraso">{{ calcularDiasRetraso(deudor.proximo_pago) }}</td>
                             <td>
-                                <a class="btn btn-sm text-white btn-danger" style="margin: auto;"
-                                    (click)="restringir_acceso(deudor.id_deuda)">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <a class="btn btn-sm text-white btn-danger" style="margin: auto;" (click)="restringir_acceso(deudor.id_deuda)">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Restringir
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-sm text-white btn-danger" style="margin: auto;"
-                                (click)="delete(deudor.id_deuda)">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <a class="btn btn-sm text-white btn-success" style="margin: auto;" >
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar
                                 </a>
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
+                
             </div>
         </div>
     </div>
 </body>
+

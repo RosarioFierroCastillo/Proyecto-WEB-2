@@ -18,6 +18,7 @@ export class sesion {
     password: string;
     ppassword: string;
     mensaje: any;
+    id_lote:number;
 
         };
     

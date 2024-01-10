@@ -58,6 +58,7 @@ import { InvitacionComponent } from './invitacion/invitacion.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { RecuperacionContraseniaComponent } from './recuperacion-contrasenia/recuperacion-contrasenia.component';
 import { ConsultarDeudasComponent } from './consultar-deudas/consultar-deudas.component';
+import { DeudasComponent } from './deudas/deudas.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { ConsultarDeudasComponent } from './consultar-deudas/consultar-deudas.co
     InvitacionComponent,
     InicioSesionComponent,
     RecuperacionContraseniaComponent,
-    ConsultarDeudasComponent
+    ConsultarDeudasComponent,
+    DeudasComponent
     
   ],
   imports: [

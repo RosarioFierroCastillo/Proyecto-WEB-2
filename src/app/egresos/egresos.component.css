@@ -95,6 +95,7 @@ table{
   width: 610px;
   border-collapse: collapse;
   margin: auto;
+  margin-left: -75px;
 }
 
 .tabla-egresos th,

@@ -38,19 +38,39 @@ export class InvitacionComponent {
       contrasenia: ['', Validators.required],
       confirmarContrasena: ['', Validators.required],
       correo: ['', Validators.required],
-      id_fraccionamiento: ['', Validators.required]
+      id_fraccionamiento: ['', Validators.required],
+      id_lote: ['', Validators.required],
+
+      
     })
   }
 
+
+  id_lote:number=6; // esta variable es la que envia para registrar la invitacion
+  id_loteParaMostrar:number=0; //esta variable es la que recibe el valor de la consulta
+  nomber_fraccionamiento:string='cracatoa'
+  nombre_admin:string='chayo fierro';
   generarInvitacion(correoElectronico: string, idFraccionamiento: number): void {
     const token = uuidv4();
-    this.invitacionService.generarInvitacion(token,correoElectronico, idFraccionamiento)
+    this.invitacionService.generarInvitacion(token,correoElectronico, idFraccionamiento,this.id_lote,this.nomber_fraccionamiento,this.nombre_admin)
       .subscribe(
         response => {
-          console.log('Success:',correoElectronico, response);
+          console.log('Invitacion generada correctamente:',correoElectronico, response);
+          Swal.fire({
+            title: 'Invitacion generada correctamente',
+            text: '',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          })
           this.enviarCorreo(correoElectronico,"http://localhost:4200/Invitacion?token="+token);
         },
         error => {
+          Swal.fire({
+            title: 'Error al generar la invitación',
+            text: '',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          })
           console.error('Error al generar la invitación:', error);
           
         }
@@ -58,8 +78,8 @@ export class InvitacionComponent {
   }
   
   ngOnInit(): void {
-    //this.obtenerDatosInvitacion();
-    this.generarInvitacion("urquidymariana@gmail.com",15);
+    this.obtenerDatosInvitacion();
+    //this.generarInvitacion("fierro_ross@live.com.mx",15);
   }
 
   obtenerDatosInvitacion(){
@@ -73,7 +93,7 @@ export class InvitacionComponent {
               console.log(this.invitacion);
               this.UserGroup.patchValue({correo: this.invitacion[0].correo_electronico});
               this.UserGroup.patchValue({id_fraccionamiento: 'ID del fraccionamiento: '+this.invitacion[0].id_fraccionamiento});
-              
+              this.UserGroup.patchValue({id_lote: 'ID del lote: '+this.invitacion[0].lote});
               
               
             } else {

@@ -7,11 +7,11 @@
 
 	<div class="derecha">
 		<h2>
-          ¡Fulanito de tal te ha invitado a formar parte de su comunidad!
+          {{invitacion[0].nombre_admin}} te ha invitado a formar parte de su comunidad!
 		</h2>
-		<h3>
-		  Villa Fontana.
-		</h3>
+		<h2>
+			{{invitacion[0].nombre_fraccionamiento}}.
+		</h2>
 		<h3>
 		  Por favor, llena los datos del formulario para crear tu cuenta en Arboleda.
 		</h3>
@@ -39,10 +39,13 @@
 			<input type="date" id="fechaNacimiento" name="fecha_nacimiento" formControlName="fecha_nacimiento" placeholder="Fecha de nacimiento" [(ngModel)]="usuario.fecha_nacimiento" required ngModel>
 		  </p>
 		  <p>
-			<input type="text" id="correo" name="correo" formControlName="correo" placeholder="" [(ngModel)]="usuario.contrasenia" required ngModel readonly>
+			<input type="text" id="correo" name="correo" formControlName="correo" placeholder=""  required  readonly>
 		</p>
 		<p>
-			<input type="text" id="id_fraccionamiento" name="id_fraccionamiento" formControlName="id_fraccionamiento" placeholder="" [(ngModel)]="usuario.id_fraccionamiento" required ngModel readonly>
+			<input type="text" id="id_fraccionamiento" name="id_fraccionamiento" formControlName="id_fraccionamiento" placeholder=""  required  readonly>
+		</p>
+		<p>
+			<input type="text" id="id_lote" name="id_lote" formControlName="id_lote" placeholder=""  required  readonly>
 		</p>
 		  <p>
 			<input type="password" id="Contrasenia" name="contrasenia" formControlName="contrasenia" placeholder="Contraseña" [(ngModel)]="usuario.correo" required ngModel>

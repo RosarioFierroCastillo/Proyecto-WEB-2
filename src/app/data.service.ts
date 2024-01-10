@@ -83,6 +83,8 @@ export class DataService {
         return data.correo;
       }else if(op==3){
         return data.id_fraccionamiento;
+      }else if(op==4){
+        return data.id_lote;
       }
 
     }

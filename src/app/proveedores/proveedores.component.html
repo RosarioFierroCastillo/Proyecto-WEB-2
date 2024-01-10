@@ -78,19 +78,17 @@
         <td style="padding: 10px; vertical-align: middle;">{{ proveedor.direccion }}</td>
         <td style="padding: 10px; vertical-align: middle;">{{ proveedor.funcion }}</td>
         <td style="padding: 10px; vertical-align: middle;">
-          <a class="btn btn-sm text-white btn-success" style="margin-right: auto;">
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true" (click)="cargarDatosProveedor(proveedor)"></span>
-            </a>
+          
           <button class="botones-tabla" (click)="cargarDatosProveedor(proveedor)" style="background-color: rgb(52, 52, 16); color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">seleccionar</button>
         </td>
         <td style="padding: 10px; vertical-align: middle;">
-          <a class="btn btn-sm text-white btn-success" style="margin-right: auto;">
-            <span class="glyphicon glyphicon-remove" aria-hidden="false" (click)="eliminarProveedor(proveedor.id_proveedor)"></span>
-            </a>
+          
           <button class="botones-tabla" (click)="eliminarProveedor(proveedor.id_proveedor)" style="background-color: red; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Eliminar</button>
       </td>
       </tr>
     </tbody>
   </table>
 </body>
+
+
 
