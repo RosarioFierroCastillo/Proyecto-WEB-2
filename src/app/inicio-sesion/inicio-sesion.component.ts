@@ -120,47 +120,47 @@ export class InicioSesionComponent {
 
   iniciar_sesion(sesion: { username: string, password: string }) 
   {
-    this.router.navigate(['PanelUser']);
+    //this.router.navigate(['PanelUser']);
 
-    // if (!sesion.username || !sesion.password) {
-    //   Swal.fire({
-    //     title: 'Por favor no dejes ningun campo vacio',
-    //     text: '',
-    //     icon: 'warning',
-    //     confirmButtonText: 'Aceptar'
-    //   })
-    //   return; 
-    // }
+    if (!sesion.username || !sesion.password) {
+      Swal.fire({
+        title: 'Por favor no dejes ningun campo vacio',
+        text: '',
+        icon: 'warning',
+        confirmButtonText: 'Aceptar'
+      })
+      return; 
+    }
 
-    // this.data.iniciar_sesion1(sesion).subscribe((sesions) => {
-    //   if (sesions.length > 0) {
-    //     console.log(sesions[0].tipo_usuario);
-    //     console.log("id loteeeeeeeeeeeeeeeeeeeeeeeeeeeeee: "+ this .data.obtener_usuario(4));
-    //     console.log(sesions[0]);
+    this.data.iniciar_sesion1(sesion).subscribe((sesions) => {
+      if (sesions.length > 0) {
+        console.log(sesions[0].tipo_usuario);
+        console.log("id loteeeeeeeeeeeeeeeeeeeeeeeeeeeeee: "+ this .data.obtener_usuario(4));
+        console.log(sesions[0]);
   
-    //     // Define el tipo de usuario
-    //     this.Tipo_usuario = sesions[0].tipo_usuario;
+        // Define el tipo de usuario
+        this.Tipo_usuario = sesions[0].tipo_usuario;
   
-    //     if (this.Tipo_usuario === "administrador") {
-    //       this.router.navigate(['PanelAdmin']);
-    //     } else if (this.Tipo_usuario === "tesorero") {
-    //       this.router.navigate(['PanelTesorero']);
-    //     } else if (this.Tipo_usuario === "usuario" || this.Tipo_usuario === "arrendatario") {
-    //       this.router.navigate(['PanelUser']);
-    //     } else {
-    //       console.log("Tipo de usuario desconocido");
-    //     }
+        if (this.Tipo_usuario === "administrador") {
+          this.router.navigate(['PanelAdmin']);
+        } else if (this.Tipo_usuario === "tesorero") {
+          this.router.navigate(['PanelTesorero']);
+        } else if (this.Tipo_usuario === "usuario" || this.Tipo_usuario === "arrendatario" || this.Tipo_usuario==="propietario") {
+          this.router.navigate(['PanelUser']);
+        } else {
+          console.log("Tipo de usuario desconocido");
+        }
   
-    //     localStorage.setItem("data", JSON.stringify(sesions[0]));
-    //   } else {
-    //     Swal.fire({
-    //       title: 'Error en inicio de sesion',
-    //       text: 'Correo o contraseña incorrectos',
-    //       icon: 'error',
-    //       confirmButtonText: 'Aceptar'
-    //     });
-    //   }
-    // });
+        localStorage.setItem("data", JSON.stringify(sesions[0]));
+      } else {
+        Swal.fire({
+          title: 'Error en inicio de sesion',
+          text: 'Correo o contraseña incorrectos',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    });
   }
   
 agregar_administrador(sesion: {username: string, correo: string, password: string, ppassword: string}){

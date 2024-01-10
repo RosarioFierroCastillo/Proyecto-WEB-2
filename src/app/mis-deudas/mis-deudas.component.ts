@@ -36,7 +36,7 @@ export class MisDeudasComponent {
   // }
 
   ConsultarDeudores(){
-    this.personasService.consultarDeudoresUsuarios(10).subscribe(
+    this.personasService.consultarDeudoresUsuarios(this.dataService.obtener_usuario(4)).subscribe(
       (deudasUsuario: Deudores[]) => {
        this.Deudores_totales = deudasUsuario
         console.log('deudas de todos los  usuarios', this.Deudores_totales);
