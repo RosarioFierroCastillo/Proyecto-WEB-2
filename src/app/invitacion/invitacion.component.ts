@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Data } from '@angular/router';
 import { InvitacionService } from './invitacion.service';
 import { Invitacion } from './invitacion.model';
 import { v4 as uuidv4 } from 'uuid';
 import { CorreoService } from './correo.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from './usuario.model';
+import { DataService } from '../data.service';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -28,7 +31,7 @@ export class InvitacionComponent {
   };
   invitacion: Invitacion[] = [];
 
-  constructor(private route: ActivatedRoute,private invitacionService: InvitacionService, private correoService: CorreoService,private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute,private invitacionService: InvitacionService, private correoService: CorreoService,private fb: FormBuilder, private dataService:DataService,private http: HttpClient) {
     this.UserGroup = this.fb.group({
       nombre: ['', Validators.required],
       apellido_pat: ['', Validators.required],
@@ -40,6 +43,7 @@ export class InvitacionComponent {
       correo: ['', Validators.required],
       id_fraccionamiento: ['', Validators.required],
       id_lote: ['', Validators.required],
+      tipo_usuario: ['', Validators.required],
 
       
     })
@@ -50,9 +54,10 @@ export class InvitacionComponent {
   id_loteParaMostrar:number=0; //esta variable es la que recibe el valor de la consulta
   nomber_fraccionamiento:string='cracatoa'
   nombre_admin:string='chayo fierro';
+  tipo_usuario:string='tesorero';
   generarInvitacion(correoElectronico: string, idFraccionamiento: number): void {
     const token = uuidv4();
-    this.invitacionService.generarInvitacion(token,correoElectronico, idFraccionamiento,this.id_lote,this.nomber_fraccionamiento,this.nombre_admin)
+    this.invitacionService.generarInvitacion(token,correoElectronico, idFraccionamiento,this.id_lote,this.nomber_fraccionamiento,this.nombre_admin,this.tipo_usuario)
       .subscribe(
         response => {
           console.log('Invitacion generada correctamente:',correoElectronico, response);
@@ -62,7 +67,7 @@ export class InvitacionComponent {
             icon: 'success',
             confirmButtonText: 'Aceptar'
           })
-          this.enviarCorreo(correoElectronico,"http://localhost:4200/Invitacion?token="+token);
+          this.enviarCorreo(correoElectronico,"haz sido invitado por tu administrador para unirte a una comunidad en linea\n por favor termina tu registro en el siguiente link:\n http://localhost:4200/Invitacion?token="+token);
         },
         error => {
           Swal.fire({
@@ -78,7 +83,7 @@ export class InvitacionComponent {
   }
   
   ngOnInit(): void {
-    this.obtenerDatosInvitacion();
+    //this.obtenerDatosInvitacion();
     //this.generarInvitacion("fierro_ross@live.com.mx",15);
   }
 
@@ -94,7 +99,7 @@ export class InvitacionComponent {
               this.UserGroup.patchValue({correo: this.invitacion[0].correo_electronico});
               this.UserGroup.patchValue({id_fraccionamiento: 'ID del fraccionamiento: '+this.invitacion[0].id_fraccionamiento});
               this.UserGroup.patchValue({id_lote: 'ID del lote: '+this.invitacion[0].lote});
-              
+              this.UserGroup.patchValue({tipo_usuario:this.invitacion[0].tipo_usuario});
               
             } else {
               console.log(this.invitacion);
@@ -122,8 +127,77 @@ export class InvitacionComponent {
     this.correoService.Enviar_Correo(correoDestinatario, mensaje);
   }
 
-  agregar_usuario(usuario: Usuario){
-    console.log(usuario);
-    
+  async agregar_usuario(
+    usuario: {
+
+      id_usuario: number | undefined;
+      nombre: string | undefined;
+      apellido_pat: string | undefined;
+      apellido_mat: string | undefined;
+      id_fraccionamiento: number | undefined;
+      tipo_usuario: string | undefined;
+      id_lote: number |undefined;
+      telefono: string | undefined;
+      fecha_nacimiento: Date | undefined;
+      correo: string | undefined;
+      contrasenia: string | undefined;
+      confirmarContrasena: string | undefined;
+    }
+
+  ) {
+  
+    if (usuario.contrasenia == usuario.confirmarContrasena) {
+  
+      const params = {
+        nombre: usuario.nombre,
+        apellido_pat: usuario.apellido_pat,
+        apellido_mat: usuario.apellido_mat,
+        tipo_usuario: "usuario",
+        telefono: usuario.telefono,
+        fecha_nacimiento: usuario.fecha_nacimiento,
+        correo: usuario.correo,
+        contrasenia: usuario.contrasenia,
+        id_fraccionamiento: this.dataService.obtener_usuario(1),
+        id_administrador: this.dataService.obtener_usuario(1),
+        id_lote: 1
+  
+        //  Intercomunicador: 123,
+        //  Codigo_acceso: "123"
+      };
+  
+      let direccion = "https://localhost:44397/api/Usuarios/Agregar_Usuario";
+      console.log(params)
+      const headers = new HttpHeaders({ 'myHeader': 'procademy' });
+      this.http.post(
+        direccion,
+        params, { headers: headers })
+        .subscribe((res: any) => {
+         // console.log("params: ", lote.descripcion, lote.direccion, lote.tipo);
+         Swal.fire({
+          title: 'Persona agregada correctamente',
+          text: '',
+          icon: 'success',
+          confirmButtonText: 'Aceptar' 
+        })
+     
+       //   this.agregar_lote(lote.descripcion, lote.direccion, lote.tipo);
+         // this.agregar_lote(this.UserGroup.value);
+  
+        //  this.agregar_lote(this.lote);
+  
+        });
+    }
+    else {
+      console.log("error: intentalo de nuevo");
+    }
+  
+   // this.usuarios.push(this.UserGroup.value);
+    //this.fetchDataLastUser();
+    this.UserGroup.reset();
+   // this.UserGroup1.reset();
+  
+  }
+  agregar_lote(descripcion: any, direccion: any, tipo: any) {
+    throw new Error('Method not implemented.');
   }
 }
